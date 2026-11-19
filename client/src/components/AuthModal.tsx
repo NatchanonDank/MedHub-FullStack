@@ -28,7 +28,7 @@ export const AuthModal: React.FC = () => {
 
   const fillDemoAccount = () => {
     setMode('login');
-    setEmail('natchanon@medhub.com');
+    setEmail('test@test.com');
     setPassword('1234');
     setError('');
   };
@@ -165,7 +165,7 @@ export const AuthModal: React.FC = () => {
               onClick={fillDemoAccount}
               className="btn btn-ghost btn-xs text-primary"
             >
-              ใช้บัญชีทดสอบ (natchanon@medhub.com / 1234)
+              ใช้บัญชีทดสอบ (test@test.com / 1234)
             </button>
           </div>
         )}
