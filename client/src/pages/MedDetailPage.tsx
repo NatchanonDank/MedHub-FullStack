@@ -33,7 +33,7 @@ export const MedDetailPage: React.FC = () => {
 
   // เช็คว่ายาตัวนี้อยู่ในกระเป๋าหรือยัง
   const inKit = isInKit(String(medication.id));
-  const medImage = medication.imageUrl || medication.image;
+  const medImage = medication.imageUrl || '/icon.png';
 
   // ใช้ max-w-7xl ให้เท่ากับหน้าแรก เพื่อป้องกันปัญหากรอบดุ๊กดิ๊กเวลาเปลี่ยนหน้า
   return (

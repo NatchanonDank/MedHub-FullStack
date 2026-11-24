@@ -26,10 +26,17 @@ export const AuthModal: React.FC = () => {
     setError('');
   };
 
-  const fillDemoAccount = () => {
+  const fillUserAccount = () => {
     setMode('login');
     setEmail('test@test.com');
     setPassword('1234');
+    setError('');
+  };
+
+  const fillAdminAccount = () => {
+    setMode('login');
+    setEmail('admin@medhub.com');
+    setPassword('admin1234');
     setError('');
   };
 
@@ -47,8 +54,8 @@ export const AuthModal: React.FC = () => {
         setUser(res.user);
       }
       resetForm();
-    } catch (err: any) {
-      setError(err.message || 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
     } finally {
       setLoading(false);
     }
@@ -73,7 +80,7 @@ export const AuthModal: React.FC = () => {
             {mode === 'login' ? 'เข้าสู่ระบบ MedHub' : 'สมัครสมาชิกใหม่'}
           </h3>
           <p className="text-sm text-base-content/60 mt-1">
-            เข้าสู่ระบบเพื่อบันทึกและจัดการกระเป๋ายาส่วนตัวของคุณ
+            เข้าสู่ระบบเพื่อจัดการกระเป๋ายาและรายงานอาการไม่พึงประสงค์
           </p>
         </div>
 
@@ -159,13 +166,20 @@ export const AuthModal: React.FC = () => {
         </form>
 
         {mode === 'login' && (
-          <div className="mt-4 pt-4 border-t border-base-200 text-center">
+          <div className="mt-4 pt-4 border-t border-base-200 flex flex-col gap-1 items-center">
             <button
               type="button"
-              onClick={fillDemoAccount}
+              onClick={fillUserAccount}
               className="btn btn-ghost btn-xs text-primary"
             >
-              ใช้บัญชีทดสอบ (test@test.com / 1234)
+              ใช้บัญชีผู้ใช้ทั่วไป (test@test.com / 1234)
+            </button>
+            <button
+              type="button"
+              onClick={fillAdminAccount}
+              className="btn btn-ghost btn-xs text-warning"
+            >
+              ใช้บัญชีผู้ดูแลระบบ (admin@medhub.com / admin1234)
             </button>
           </div>
         )}

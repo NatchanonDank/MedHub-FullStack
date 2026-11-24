@@ -4,6 +4,8 @@ import { MedDetailPage } from './pages/MedDetailPage';
 import { MyKitPage } from './pages/MyKitPage';
 import { AboutPage } from './pages/AboutPage';
 import { InteractionCheckerPage } from './pages/InteractionCheckerPage';
+import { SymptomReportPage } from './pages/SymptomReportPage';
+import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { AuthModal } from './components/AuthModal';
 import { useMedStore } from './stores/useMedStore';
 
@@ -12,6 +14,9 @@ const MainLayout = () => {
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     `btn btn-ghost ${isActive ? 'text-primary border-b-2 border-primary rounded-none font-bold' : ''}`;
+
+  const adminNavClass = ({ isActive }: { isActive: boolean }) =>
+    `btn btn-ghost text-warning font-bold ${isActive ? 'border-b-2 border-warning rounded-none' : ''}`;
 
   return (
     <div className="min-h-screen bg-base-200 font-sans flex flex-col">
@@ -29,14 +34,21 @@ const MainLayout = () => {
           <NavLink to="/" className={navClass}>หน้าหลัก</NavLink>
           <NavLink to="/checker" className={navClass}>เช็คปฏิกิริยายา</NavLink>
           <NavLink to="/my-kit" className={navClass}>กระเป๋ายา</NavLink>
+          <NavLink to="/reports" className={navClass}>รายงานอาการ</NavLink>
           <NavLink to="/about" className={navClass}>เกี่ยวกับเรา</NavLink>
+
+          {user?.role === 'ADMIN' && (
+            <NavLink to="/admin" className={adminNavClass}>
+              จัดการระบบ (Admin)
+            </NavLink>
+          )}
 
           <div className="divider divider-horizontal mx-1"></div>
 
           {user ? (
             <div className="flex items-center gap-2">
-              <div className="badge badge-primary badge-outline font-semibold py-3 px-3">
-                {user.name}
+              <div className={`badge ${user.role === 'ADMIN' ? 'badge-warning' : 'badge-primary badge-outline'} font-semibold py-3 px-3`}>
+                {user.name} {user.role === 'ADMIN' && '(Admin)'}
               </div>
               <button onClick={logout} className="btn btn-ghost btn-sm text-error">
                 ออกจากระบบ
@@ -60,7 +72,11 @@ const MainLayout = () => {
             <li><NavLink to="/">หน้าหลัก</NavLink></li>
             <li><NavLink to="/checker">เช็คปฏิกิริยายา</NavLink></li>
             <li><NavLink to="/my-kit">กระเป๋ายา</NavLink></li>
+            <li><NavLink to="/reports">รายงานอาการ</NavLink></li>
             <li><NavLink to="/about">เกี่ยวกับเรา</NavLink></li>
+            {user?.role === 'ADMIN' && (
+              <li><NavLink to="/admin" className="text-warning font-bold">จัดการระบบ (Admin)</NavLink></li>
+            )}
             <div className="divider my-1"></div>
             {user ? (
               <>
@@ -99,6 +115,8 @@ export const router = createBrowserRouter([
       { path: 'med/:id', element: <MedDetailPage /> },
       { path: 'checker', element: <InteractionCheckerPage /> },
       { path: 'my-kit', element: <MyKitPage /> },
+      { path: 'reports', element: <SymptomReportPage /> },
+      { path: 'admin', element: <AdminDashboardPage /> },
       { path: 'about', element: <AboutPage /> },
     ],
   },

@@ -3,19 +3,33 @@ import { useMedStore } from '../stores/useMedStore';
 import {
   fetchMedicationsApi,
   fetchMedicationByIdApi,
+  createMedication,
+  updateMedication,
+  deleteMedication,
   fetchMyKitApi,
   toggleMyKitApi,
   updateMyKitNoteApi,
   clearMyKitApi,
+  fetchSymptomReports,
+  createSymptomReport,
+  updateSymptomReport,
+  deleteSymptomReport,
   type Medication,
+  type MedicationPayload,
   type MedicationApiResponse,
   type MyKitItem,
+  type SeverityLevel,
+  type ReportStatus,
 } from '../api/medicationApi';
 
-export type { Medication, MedicationApiResponse, MyKitItem };
-
-// ดึงรายการยาทั้งหมดจาก Backend + PostgreSQL
-export const useMedications = () => {
+// ==========================================
+// 1. Medications Queries & Admin Mutations
+// ==========================================
+export const useMedications = (
+  _search?: string,
+  _category?: string,
+  _sort?: string
+) => {
   return useQuery<MedicationApiResponse>({
     queryKey: ['medications'],
     queryFn: fetchMedicationsApi,
@@ -23,7 +37,6 @@ export const useMedications = () => {
   });
 };
 
-// ดึงรายละเอียดยาแต่ละตัวจาก Backend
 export const useMedicationDetail = (id: string | undefined) => {
   const queryClient = useQueryClient();
 
@@ -39,7 +52,41 @@ export const useMedicationDetail = (id: string | undefined) => {
   });
 };
 
-// จัดการกระเป๋ายาส่วนตัว (CRUD เชื่อมต่อ Database จริง)
+export const useCreateMedication = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: MedicationPayload) => createMedication(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['medications'] });
+    },
+  });
+};
+
+export const useUpdateMedication = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: Partial<MedicationPayload> }) =>
+      updateMedication(id, payload),
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['medications'] });
+      queryClient.invalidateQueries({ queryKey: ['medication', variables.id] });
+    },
+  });
+};
+
+export const useDeleteMedication = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => deleteMedication(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['medications'] });
+    },
+  });
+};
+
+// ==========================================
+// 2. Personal Collection (My Kit) CRUD
+// ==========================================
 export const useMyKit = () => {
   const queryClient = useQueryClient();
   const { user, openAuthModal } = useMedStore();
@@ -109,4 +156,63 @@ export const useMyKit = () => {
     updateItemNote,
     clearKit,
   };
+};
+
+// ==========================================
+// 3. Symptom Reports Queries & Mutations
+// ==========================================
+export const useSymptomReports = (userId?: number) => {
+  return useQuery({
+    queryKey: ['symptom-reports', userId ?? 'all'],
+    queryFn: () => fetchSymptomReports(userId),
+  });
+};
+
+export const useCreateSymptomReport = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: {
+      userId: number;
+      medicationId: string;
+      symptom: string;
+      severity: SeverityLevel;
+      description?: string;
+    }) => createSymptomReport(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['symptom-reports'] });
+    },
+  });
+};
+
+export const useUpdateSymptomReport = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      id,
+      payload,
+    }: {
+      id: number;
+      payload: {
+        medicationId?: string;
+        symptom?: string;
+        severity?: SeverityLevel;
+        description?: string;
+        status?: ReportStatus;
+        adminNote?: string;
+      };
+    }) => updateSymptomReport(id, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['symptom-reports'] });
+    },
+  });
+};
+
+export const useDeleteSymptomReport = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => deleteSymptomReport(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['symptom-reports'] });
+    },
+  });
 };
