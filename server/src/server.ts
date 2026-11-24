@@ -6,19 +6,28 @@ import { prisma } from './lib/prisma';
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 app.use(express.json());
 
-
-// Health Check
+// Root & Health Check
+app.get('/', (_req: Request, res: Response) => {
+  res.json({
+    status: 'ok',
+    message: 'MedHub Final Project API is running on Vercel',
+  });
+});
 
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', message: 'MedHub Final Project API is running' });
 });
 
-
 // Authentication (พร้อม Role: USER / ADMIN)
-
 app.post('/api/auth/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, name, password } = req.body;
@@ -79,9 +88,7 @@ app.post('/api/auth/login', async (req: Request, res: Response, next: NextFuncti
   }
 });
 
-
 // Medications Full CRUD (Public Read + Admin C/U/D)
-
 app.get('/api/medications', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { search, category, sort } = req.query;
@@ -250,9 +257,7 @@ app.delete('/api/medications/:id', async (req: Request, res: Response, next: Nex
   }
 });
 
-
 // Drug Interaction Checker
-
 app.post('/api/interactions/check', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { med1Id, med2Id } = req.body;
@@ -301,7 +306,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
     const isDiuretic = (med: MedRecord) =>
       med.category === 'Cardiovascular' && matchName(med, 'Furosemide', 'Hydrochlorothiazide');
     const isPotassiumSparing = (med: MedRecord) => matchName(med, 'Spironolactone');
-    const isAceArb = (med: MedRecord) => matchName(med, 'Lisinopril', 'Valsartan', 'Losartan');
+    const isAceArb = (med: MedRecord) => matchName(med, 'Lisinopril', 'Valsartan', 'Losartan', 'Enalapril');
     const isPPI = (med: MedRecord) => matchName(med, 'Omeprazole', 'Pantoprazole');
     const isClopidogrel = (med: MedRecord) => matchName(med, 'Clopidogrel');
     const isMethotrexate = (med: MedRecord) => matchName(med, 'Methotrexate');
@@ -435,9 +440,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
   }
 });
 
-
 // Personal Collection (My Kit CRUD)
-
 app.get('/api/my-kit/:userId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = Number(req.params.userId);
@@ -502,9 +505,7 @@ app.delete('/api/my-kit/:userId', async (req: Request, res: Response, next: Next
   }
 });
 
-
 // Adverse Symptom Reports Full CRUD (User & Admin)
-
 app.get('/api/reports', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { userId } = req.query;
@@ -595,9 +596,7 @@ app.delete('/api/reports/:id', async (req: Request, res: Response, next: NextFun
   }
 });
 
-
 // Global Error Handler
-
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('Server Error:', err);
   res.status(500).json({
@@ -605,6 +604,12 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`MedHub Server running on http://localhost:${PORT}`);
-});
+// รัน Listen เฉพาะตอนพัฒนาบนเครื่อง Local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`MedHub Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export Express App สำหรับ Vercel
+export default app;
