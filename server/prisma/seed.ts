@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
@@ -7,42 +9,129 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
-async function main() {
-  console.log('Starting database seed...');
+interface SeedMedication {
+  id: string;
+  name: string;
+  genericName: string;
+  brandName?: string;
+  strength?: string;
+  dosageForm?: string;
+  category: string;
+  prescriptionType?: string;
+  specialTag?: string;
+  dosageInstruction?: string;
+  appearance?: string;
+  indications: string[];
+  sideEffects: string[];
+  warnings: string[];
+  interactions: string[];
+  pregnancyCategory?: string;
+  imageUrl?: string;
+}
 
-  // 1. สร้าง User ตัวอย่างสำหรับทดสอบ Login
-  const demoUser = await prisma.user.upsert({
-    where: { email: 'test@test.com' },
-    update: {},
+async function main() {
+  console.log('Starting Final Project database seed...');
+
+  // 1. สร้างบัญชี Admin และ User ตัวอย่าง
+  const adminUser = await prisma.user.upsert({
+    where: { email: 'admin@medhub.com' },
+    update: { role: 'ADMIN' },
     create: {
-      email: 'test@test.com',
-      name: 'Test',
-      password: '1234',
+      email: 'admin@medhub.com',
+      name: 'Admin Pharmacist',
+      password: 'admin1234',
+      role: 'ADMIN',
     },
   });
-  console.log(`Seeded user: ${demoUser.email} (password: 1234)`);
 
-  // 2. ดึงยาตัวอย่าง 2 ตัวแรกที่มีอยู่แล้วใน Supabase มาเพิ่มลงกระเป๋ายา
-  const sampleMeds = await prisma.medication.findMany({ take: 2 });
+  const demoUser = await prisma.user.upsert({
+    where: { email: 'test@test.com' },
+    update: { role: 'USER' },
+    create: {
+      email: 'test@test.com',
+      name: 'Natchanon (User)',
+      password: '1234',
+      role: 'USER',
+    },
+  });
 
-  for (const med of sampleMeds) {
-    await prisma.myKitItem.upsert({
-      where: {
-        userId_medicationId: {
-          userId: demoUser.id,
-          medicationId: med.id,
-        },
+  console.log(`Seeded users: ${adminUser.email} (ADMIN) & ${demoUser.email} (USER)`);
+
+  // 2. Seed ข้อมูลยา 49 รายการจาก server/prisma/data/medications.json
+  const jsonPath = path.resolve(__dirname, './data/medications.json');
+  const medications: SeedMedication[] = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+
+  for (const med of medications) {
+    await prisma.medication.upsert({
+      where: { id: med.id },
+      update: {
+        name: med.name,
+        genericName: med.genericName || med.name,
+        brandName: med.brandName || null,
+        strength: med.strength || null,
+        dosageForm: med.dosageForm || null,
+        category: med.category || 'General',
+        prescriptionType: med.prescriptionType || null,
+        specialTag: med.specialTag || null,
+        dosageInstruction: med.dosageInstruction || null,
+        appearance: med.appearance || null,
+        indications: Array.isArray(med.indications) ? med.indications : [],
+        sideEffects: Array.isArray(med.sideEffects) ? med.sideEffects : [],
+        warnings: Array.isArray(med.warnings) ? med.warnings : [],
+        interactions: Array.isArray(med.interactions) ? med.interactions : [],
+        pregnancyCategory: med.pregnancyCategory || null,
+        imageUrl: med.imageUrl || null,
       },
-      update: {},
       create: {
-        userId: demoUser.id,
-        medicationId: med.id,
-        note: `บันทึกช่วยจำสำหรับ ${med.name}`,
+        id: med.id,
+        name: med.name,
+        genericName: med.genericName || med.name,
+        brandName: med.brandName || null,
+        strength: med.strength || null,
+        dosageForm: med.dosageForm || null,
+        category: med.category || 'General',
+        prescriptionType: med.prescriptionType || null,
+        specialTag: med.specialTag || null,
+        dosageInstruction: med.dosageInstruction || null,
+        appearance: med.appearance || null,
+        indications: Array.isArray(med.indications) ? med.indications : [],
+        sideEffects: Array.isArray(med.sideEffects) ? med.sideEffects : [],
+        warnings: Array.isArray(med.warnings) ? med.warnings : [],
+        interactions: Array.isArray(med.interactions) ? med.interactions : [],
+        pregnancyCategory: med.pregnancyCategory || null,
+        imageUrl: med.imageUrl || null,
       },
     });
   }
+  console.log(`Seeded ${medications.length} medications successfully.`);
 
-  console.log(`Seeded ${sampleMeds.length} MyKit items from existing Supabase data.`);
+  // 3. Seed รายงานอาการไม่พึงประสงค์ตัวอย่างในชุมชน
+  const existingReports = await prisma.symptomReport.count();
+  if (existingReports === 0) {
+    await prisma.symptomReport.createMany({
+      data: [
+        {
+          userId: demoUser.id,
+          medicationId: 'med_027', // Ibuprofen
+          symptom: 'แสบท้องและคลื่นไส้หลังรับประทาน',
+          severity: 'MODERATE',
+          description: 'ทานยาหลังอาหารเช้าประมาณ 30 นาที มีอาการปวดแสบลิ้นปี่',
+          status: 'REVIEWED',
+          adminNote: 'แนะนำให้ทานยาพร้อมอาหารคำสุดท้ายและดื่มน้ำตามมากๆ หากไม่ดีขึ้นควรพบแพทย์เพื่อปรับยา',
+        },
+        {
+          userId: demoUser.id,
+          medicationId: 'med_013', // Cetirizine
+          symptom: 'ง่วงซึมและปากแห้งเล็กน้อย',
+          severity: 'MILD',
+          description: 'ทานแก้แพ้อากาศช่วงเช้าแล้วมีอาการง่วงระหว่างทำงาน',
+          status: 'PENDING',
+          adminNote: '',
+        },
+      ],
+    });
+    console.log('Seeded initial community symptom reports.');
+  }
 }
 
 main()

@@ -13,11 +13,11 @@ app.use(express.json());
 // 1. Health Check
 // ==========================================
 app.get('/api/health', (_req: Request, res: Response) => {
-  res.json({ status: 'ok', message: 'MedHub Backend API is running' });
+  res.json({ status: 'ok', message: 'MedHub Final Project API is running' });
 });
 
 // ==========================================
-// 2. Simple Authentication (Register / Login)
+// 2. Authentication (พร้อม Role: USER / ADMIN)
 // ==========================================
 app.post('/api/auth/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -27,7 +27,7 @@ app.post('/api/auth/register', async (req: Request, res: Response, next: NextFun
       return;
     }
 
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await prisma.user.findUnique({ where: { email: String(email).trim() } });
     if (existingUser) {
       res.status(409).json({ message: 'อีเมลนี้ถูกใช้งานแล้ว กรุณาเข้าสู่ระบบ' });
       return;
@@ -38,8 +38,9 @@ app.post('/api/auth/register', async (req: Request, res: Response, next: NextFun
         email: String(email).trim(),
         name: name ? String(name).trim() : String(email).split('@')[0],
         password: String(password),
+        role: 'USER',
       },
-      select: { id: true, email: true, name: true },
+      select: { id: true, email: true, name: true, role: true },
     });
 
     res.status(201).json({ user });
@@ -70,6 +71,7 @@ app.post('/api/auth/login', async (req: Request, res: Response, next: NextFuncti
         id: user.id,
         email: user.email,
         name: user.name,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -78,13 +80,13 @@ app.post('/api/auth/login', async (req: Request, res: Response, next: NextFuncti
 });
 
 // ==========================================
-// 3. Medications RESTful Endpoints (Read & Admin CRUD)
+// 3. Medications Full CRUD (Public Read + Admin C/U/D)
 // ==========================================
 app.get('/api/medications', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { search, category, sort } = req.query;
 
-    const where: any = {};
+    const where: Record<string, unknown> = {};
     if (category && typeof category === 'string') {
       where.category = category;
     }
@@ -114,13 +116,12 @@ app.get('/api/medications', async (req: Request, res: Response, next: NextFuncti
 
 app.get('/api/medications/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
     const medication = await prisma.medication.findUnique({
-      where: { id },
+      where: { id: String(req.params.id) },
     });
 
     if (!medication) {
-      res.status(404).json({ message: `ไม่พบข้อมูลยารหัส ${id}` });
+      res.status(404).json({ message: `ไม่พบข้อมูลยารหัส ${req.params.id}` });
       return;
     }
 
@@ -130,18 +131,135 @@ app.get('/api/medications/:id', async (req: Request, res: Response, next: NextFu
   }
 });
 
+// ADMIN CREATE: เพิ่มยาใหม่เข้าระบบ
+app.post('/api/medications', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const {
+      name,
+      genericName,
+      brandName,
+      strength,
+      dosageForm,
+      category,
+      prescriptionType,
+      specialTag,
+      dosageInstruction,
+      appearance,
+      indications,
+      sideEffects,
+      warnings,
+      interactions,
+      pregnancyCategory,
+      imageUrl,
+    } = req.body;
+
+    if (!name || !genericName || !category) {
+      res.status(400).json({ message: 'กรุณากรอกชื่อยา ชื่อสามัญ และหมวดหมู่ให้ครบถ้วน' });
+      return;
+    }
+
+    const generatedId = `med_${Date.now().toString().slice(-5)}`;
+
+    const created = await prisma.medication.create({
+      data: {
+        id: generatedId,
+        name: String(name).trim(),
+        genericName: String(genericName).trim(),
+        brandName: brandName || 'Generic',
+        strength: strength || '',
+        dosageForm: dosageForm || 'Tablet',
+        category: String(category).trim(),
+        prescriptionType: prescriptionType || 'Rx',
+        specialTag: specialTag || '',
+        dosageInstruction: dosageInstruction || '',
+        appearance: appearance || '',
+        indications: Array.isArray(indications) ? indications : [],
+        sideEffects: Array.isArray(sideEffects) ? sideEffects : [],
+        warnings: Array.isArray(warnings) ? warnings : [],
+        interactions: Array.isArray(interactions) ? interactions : [],
+        pregnancyCategory: pregnancyCategory || 'C',
+        imageUrl: imageUrl || '/icon.png',
+      },
+    });
+
+    res.status(201).json(created);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ADMIN UPDATE: แก้ไขข้อมูลยา
+app.put('/api/medications/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = String(req.params.id);
+    const {
+      name,
+      genericName,
+      brandName,
+      strength,
+      dosageForm,
+      category,
+      prescriptionType,
+      specialTag,
+      dosageInstruction,
+      appearance,
+      indications,
+      sideEffects,
+      warnings,
+      interactions,
+      pregnancyCategory,
+      imageUrl,
+    } = req.body;
+
+    const updated = await prisma.medication.update({
+      where: { id },
+      data: {
+        name,
+        genericName,
+        brandName,
+        strength,
+        dosageForm,
+        category,
+        prescriptionType,
+        specialTag,
+        dosageInstruction,
+        appearance,
+        indications: Array.isArray(indications) ? indications : undefined,
+        sideEffects: Array.isArray(sideEffects) ? sideEffects : undefined,
+        warnings: Array.isArray(warnings) ? warnings : undefined,
+        interactions: Array.isArray(interactions) ? interactions : undefined,
+        pregnancyCategory,
+        imageUrl,
+      },
+    });
+
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ADMIN DELETE: ลบยาออกจากฐานข้อมูล
+app.delete('/api/medications/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = String(req.params.id);
+    await prisma.medication.delete({ where: { id } });
+    res.json({ message: 'ลบข้อมูลยาเรียบร้อยแล้ว', id });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // ==========================================
-// 4. Drug Interaction Checker Endpoint
+// 4. Drug Interaction Checker
 // ==========================================
 app.post('/api/interactions/check', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { med1Id, med2Id } = req.body;
-
     if (!med1Id || !med2Id) {
       res.status(400).json({ message: 'กรุณาระบุยาทั้ง 2 ชนิด' });
       return;
     }
-
     if (med1Id === med2Id) {
       res.json({
         status: 'warning',
@@ -160,7 +278,9 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
       return;
     }
 
-    const matchName = (med: typeof med1, ...names: string[]) =>
+    type MedRecord = NonNullable<typeof med1>;
+
+    const matchName = (med: MedRecord, ...names: string[]) =>
       names.some(
         (n) =>
           med.name.includes(n) ||
@@ -168,69 +288,64 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
           (med.brandName && med.brandName.includes(n))
       );
 
-    const isNSAID = (med: typeof med1) => med.category === 'NSAID';
-    const isBloodThinner = (med: typeof med1) =>
+    const isNSAID = (med: MedRecord) => med.category === 'NSAID';
+    const isBloodThinner = (med: MedRecord) =>
       matchName(med, 'Warfarin', 'Apixaban', 'Clopidogrel', 'Enoxaparin', 'Aspirin') ||
       med.category === 'Anticoagulant';
-    const isSSRI = (med: typeof med1) => matchName(med, 'Sertraline', 'Escitalopram', 'Fluoxetine');
-    const isTramadol = (med: typeof med1) => matchName(med, 'Tramadol');
-    const isStatin = (med: typeof med1) => matchName(med, 'Atorvastatin', 'Rosuvastatin', 'Simvastatin');
-    const isFluconazole = (med: typeof med1) => matchName(med, 'Fluconazole');
-    const isWarfarin = (med: typeof med1) => matchName(med, 'Warfarin');
-    const isDigoxin = (med: typeof med1) => matchName(med, 'Digoxin');
-    const isDiuretic = (med: typeof med1) =>
+    const isSSRI = (med: MedRecord) => matchName(med, 'Sertraline', 'Escitalopram', 'Fluoxetine');
+    const isTramadol = (med: MedRecord) => matchName(med, 'Tramadol');
+    const isStatin = (med: MedRecord) => matchName(med, 'Atorvastatin', 'Rosuvastatin', 'Simvastatin');
+    const isFluconazole = (med: MedRecord) => matchName(med, 'Fluconazole');
+    const isWarfarin = (med: MedRecord) => matchName(med, 'Warfarin');
+    const isDigoxin = (med: MedRecord) => matchName(med, 'Digoxin');
+    const isDiuretic = (med: MedRecord) =>
       med.category === 'Cardiovascular' && matchName(med, 'Furosemide', 'Hydrochlorothiazide');
-    const isPotassiumSparing = (med: typeof med1) => matchName(med, 'Spironolactone');
-    const isAceArb = (med: typeof med1) => matchName(med, 'Lisinopril', 'Valsartan', 'Losartan');
-    const isPPI = (med: typeof med1) => matchName(med, 'Omeprazole', 'Pantoprazole');
-    const isClopidogrel = (med: typeof med1) => matchName(med, 'Clopidogrel');
-    const isMethotrexate = (med: typeof med1) => matchName(med, 'Methotrexate');
+    const isPotassiumSparing = (med: MedRecord) => matchName(med, 'Spironolactone');
+    const isAceArb = (med: MedRecord) => matchName(med, 'Lisinopril', 'Valsartan', 'Losartan');
+    const isPPI = (med: MedRecord) => matchName(med, 'Omeprazole', 'Pantoprazole');
+    const isClopidogrel = (med: MedRecord) => matchName(med, 'Clopidogrel');
+    const isMethotrexate = (med: MedRecord) => matchName(med, 'Methotrexate');
     const cnsList = ['Alprazolam', 'Amitriptyline', 'Gabapentin', 'Tramadol', 'Diazepam'];
-    const isCNS = (med: typeof med1) =>
+    const isCNS = (med: MedRecord) =>
       cnsList.some((d) => med.genericName?.includes(d) || med.name.includes(d));
 
     const matchPair = (
-      checkA: (m: typeof med1) => boolean,
-      checkB: (m: typeof med1) => boolean
+      checkA: (m: MedRecord) => boolean,
+      checkB: (m: MedRecord) => boolean
     ) => (checkA(med1) && checkB(med2)) || (checkA(med2) && checkB(med1));
 
     if (matchPair(isNSAID, isBloodThinner)) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! การใช้ยาแก้ปวดกลุ่ม NSAID ร่วมกับยาละลายลิ่มเลือด/ต้านเกล็ดเลือด เพิ่มความเสี่ยงเลือดออกในทางเดินอาหารขั้นรุนแรง',
+        message: 'อันตราย! การใช้ยาแก้ปวดกลุ่ม NSAID ร่วมกับยาละลายลิ่มเลือด/ต้านเกล็ดเลือด เพิ่มความเสี่ยงเลือดออกในทางเดินอาหารขั้นรุนแรง',
       });
       return;
     }
     if (matchPair(isSSRI, isTramadol)) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! การใช้ยาทั้งสองตัวนี้ร่วมกัน เพิ่มความเสี่ยงให้เกิดภาวะ Serotonin Syndrome (ไข้สูง, กล้ามเนื้อกระตุก, สับสน) ซึ่งเป็นอันตรายถึงชีวิต',
+        message: 'อันตราย! การใช้ยาทั้งสองตัวนี้ร่วมกัน เพิ่มความเสี่ยงให้เกิดภาวะ Serotonin Syndrome (ไข้สูง, กล้ามเนื้อกระตุก, สับสน) ซึ่งเป็นอันตรายถึงชีวิต',
       });
       return;
     }
     if (matchPair(isStatin, isFluconazole)) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! ยาฆ่าเชื้อรา Fluconazole จะเพิ่มระดับยาลดไขมัน Statin ในเลือด ทำให้เสี่ยงต่อภาวะกล้ามเนื้อลายสลายตัว (Rhabdomyolysis)',
+        message: 'อันตราย! ยาฆ่าเชื้อรา Fluconazole จะเพิ่มระดับยาลดไขมัน Statin ในเลือด ทำให้เสี่ยงต่อภาวะกล้ามเนื้อลายสลายตัว (Rhabdomyolysis)',
       });
       return;
     }
     if (matchPair(isWarfarin, isFluconazole)) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! Fluconazole เพิ่มระดับยา Warfarin ในเลือดอย่างมาก ทำให้เสี่ยงต่อภาวะเลือดออกรุนแรง ต้องปรึกษาแพทย์ทันที',
+        message: 'อันตราย! Fluconazole เพิ่มระดับยา Warfarin ในเลือดอย่างมาก ทำให้เสี่ยงต่อภาวะเลือดออกรุนแรง ต้องปรึกษาแพทย์ทันที',
       });
       return;
     }
     if (matchPair(isAceArb, isPotassiumSparing)) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! การใช้ยาลดความดัน (ACEi/ARB) ร่วมกับ Spironolactone อาจทำให้ระดับโพแทสเซียมในเลือดสูงเกินไป (Hyperkalemia) ซึ่งมีผลต่อจังหวะหัวใจ',
+        message: 'อันตราย! การใช้ยาลดความดัน (ACEi/ARB) ร่วมกับ Spironolactone อาจทำให้ระดับโพแทสเซียมในเลือดสูงเกินไป (Hyperkalemia)',
       });
       return;
     }
@@ -240,48 +355,42 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
     ) {
       res.json({
         status: 'danger',
-        message:
-          'อันตราย! ยาขับปัสสาวะอาจทำให้โพแทสเซียมต่ำ ซึ่งจะเพิ่มความเป็นพิษของ Digoxin (คลื่นไส้, ตาพร่า, หัวใจเต้นผิดจังหวะ)',
+        message: 'อันตราย! ยาขับปัสสาวะอาจทำให้โพแทสเซียมต่ำ ซึ่งจะเพิ่มความเป็นพิษของ Digoxin',
       });
       return;
     }
     if (matchPair(isPPI, isClopidogrel)) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาลดกรด (โดยเฉพาะ Omeprazole) อาจลดประสิทธิภาพของยา Clopidogrel ในการป้องกันลิ่มเลือด ควรปรึกษาแพทย์',
+        message: 'เฝ้าระวัง: ยาลดกรด (โดยเฉพาะ Omeprazole) อาจลดประสิทธิภาพของยา Clopidogrel ในการป้องกันลิ่มเลือด',
       });
       return;
     }
     if (matchPair(isMethotrexate, isNSAID)) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาแก้ปวด NSAID สามารถลดการขับออกของ Methotrexate ทำให้ระดับยาในร่างกายสูงขึ้นและเกิดความเป็นพิษได้',
+        message: 'เฝ้าระวัง: ยาแก้ปวด NSAID สามารถลดการขับออกของ Methotrexate ทำให้เกิดความเป็นพิษได้',
       });
       return;
     }
     if (isCNS(med1) && isCNS(med2)) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: การใช้ยากดประสาท/คลายกังวล/แก้ปวด ร่วมกัน จะเสริมฤทธิ์ทำให้ง่วงซึมรุนแรง กดการหายใจ และเสี่ยงต่ออุบัติเหตุ',
+        message: 'เฝ้าระวัง: การใช้ยากดประสาท/คลายกังวล/แก้ปวด ร่วมกัน จะเสริมฤทธิ์ทำให้ง่วงซึมรุนแรง',
       });
       return;
     }
     if (matchPair(isSSRI, isNSAID)) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: การทานยาต้านเศร้ากลุ่ม SSRI ร่วมกับยาแก้ปวด NSAID เพิ่มความเสี่ยงให้เกิดแผลและเลือดออกในกระเพาะอาหาร',
+        message: 'เฝ้าระวัง: การทานยาต้านเศร้ากลุ่ม SSRI ร่วมกับยาแก้ปวด NSAID เพิ่มความเสี่ยงเลือดออกในกระเพาะอาหาร',
       });
       return;
     }
     if (matchPair(isNSAID, (m) => isAceArb(m) || isDiuretic(m))) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาแก้ปวด NSAID สามารถลดประสิทธิภาพของยาลดความดันโลหิตและยาขับปัสสาวะ และอาจทำให้การทำงานของไตแย่ลง',
+        message: 'เฝ้าระวัง: ยาแก้ปวด NSAID สามารถลดประสิทธิภาพของยาลดความดันโลหิตและยาขับปัสสาวะ',
       });
       return;
     }
@@ -293,8 +402,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
     ) {
       res.json({
         status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาทั้งสองชนิดอยู่ในกลุ่มการรักษาเดียวกัน อาจเกิดการเสริมฤทธิ์กัน (เช่น ความดันตกมากเกินไป หรือง่วงซึมมาก) ควรใช้ภายใต้คำสั่งแพทย์',
+        message: 'เฝ้าระวัง: ยาทั้งสองชนิดอยู่ในกลุ่มการรักษาเดียวกัน อาจเกิดการเสริมฤทธิ์กัน ควรใช้ภายใต้คำสั่งแพทย์',
       });
       return;
     }
@@ -320,7 +428,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
 
     res.json({
       status: 'safe',
-      message: `ปลอดภัย: ไม่พบปฏิกิริยารุนแรงระหว่าง ${med1.name} และ ${med2.name} ในระบบเบื้องต้น อย่างไรก็ตามหากมีอาการผิดปกติควรปรึกษาเภสัชกร`,
+      message: `ปลอดภัย: ไม่พบปฏิกิริยารุนแรงระหว่าง ${med1.name} และ ${med2.name} ในระบบเบื้องต้น`,
     });
   } catch (err) {
     next(err);
@@ -330,45 +438,27 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
 // ==========================================
 // 5. Personal Collection (My Kit CRUD)
 // ==========================================
-// READ: ดึงรายการยาในกระเป๋าของผู้ใช้
 app.get('/api/my-kit/:userId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = Number(req.params.userId);
-    if (Number.isNaN(userId)) {
-      res.status(400).json({ message: 'Invalid userId' });
-      return;
-    }
-
     const items = await prisma.myKitItem.findMany({
       where: { userId },
       include: { medication: true },
       orderBy: { createdAt: 'desc' },
     });
-
     res.json(items);
   } catch (err) {
     next(err);
   }
 });
 
-// CREATE / TOGGLE: เพิ่มยาลงกระเป๋า (หรือถ้ามีอยู่แล้วให้ลบออก)
 app.post('/api/my-kit/toggle', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { userId, medicationId, note } = req.body;
     const uid = Number(userId);
 
-    if (!uid || !medicationId) {
-      res.status(400).json({ message: 'กรุณาระบุ userId และ medicationId' });
-      return;
-    }
-
     const existing = await prisma.myKitItem.findUnique({
-      where: {
-        userId_medicationId: {
-          userId: uid,
-          medicationId: String(medicationId),
-        },
-      },
+      where: { userId_medicationId: { userId: uid, medicationId: String(medicationId) } },
     });
 
     if (existing) {
@@ -378,30 +468,115 @@ app.post('/api/my-kit/toggle', async (req: Request, res: Response, next: NextFun
     }
 
     const created = await prisma.myKitItem.create({
-      data: {
-        userId: uid,
-        medicationId: String(medicationId),
-        note: note || '',
-      },
+      data: { userId: uid, medicationId: String(medicationId), note: note || '' },
       include: { medication: true },
     });
-
     res.status(201).json({ action: 'added', item: created });
   } catch (err) {
     next(err);
   }
 });
 
-// UPDATE: แก้ไขโน้ตส่วนตัวของยาในกระเป๋า
 app.patch('/api/my-kit/:itemId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const itemId = Number(req.params.itemId);
     const { note } = req.body;
-
     const updated = await prisma.myKitItem.update({
       where: { id: itemId },
       data: { note: String(note ?? '') },
       include: { medication: true },
+    });
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/my-kit/:userId', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = Number(req.params.userId);
+    await prisma.myKitItem.deleteMany({ where: { userId } });
+    res.json({ message: 'ล้างกระเป๋ายาเรียบร้อยแล้ว' });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ==========================================
+// 6. Adverse Symptom Reports Full CRUD (User & Admin)
+// ==========================================
+app.get('/api/reports', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { userId } = req.query;
+    const where: Record<string, unknown> = {};
+    if (userId) {
+      where.userId = Number(userId);
+    }
+
+    const reports = await prisma.symptomReport.findMany({
+      where,
+      include: {
+        user: { select: { id: true, name: true, email: true } },
+        medication: { select: { id: true, name: true, genericName: true, category: true, imageUrl: true } },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    res.json(reports);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/reports', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { userId, medicationId, symptom, severity, description } = req.body;
+
+    if (!userId || !medicationId || !symptom) {
+      res.status(400).json({ message: 'กรุณาเลือกตัวยาและระบุอาการที่พบ' });
+      return;
+    }
+
+    const created = await prisma.symptomReport.create({
+      data: {
+        userId: Number(userId),
+        medicationId: String(medicationId),
+        symptom: String(symptom).trim(),
+        severity: severity || 'MILD',
+        description: description ? String(description).trim() : '',
+      },
+      include: {
+        user: { select: { id: true, name: true, email: true } },
+        medication: { select: { id: true, name: true, genericName: true, category: true, imageUrl: true } },
+      },
+    });
+
+    res.status(201).json(created);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.put('/api/reports/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = Number(req.params.id);
+    const { medicationId, symptom, severity, description, status, adminNote } = req.body;
+
+    const data: Record<string, unknown> = {};
+    if (medicationId !== undefined) data.medicationId = String(medicationId);
+    if (symptom !== undefined) data.symptom = String(symptom).trim();
+    if (severity !== undefined) data.severity = severity;
+    if (description !== undefined) data.description = String(description).trim();
+    if (status !== undefined) data.status = status;
+    if (adminNote !== undefined) data.adminNote = String(adminNote).trim();
+
+    const updated = await prisma.symptomReport.update({
+      where: { id },
+      data,
+      include: {
+        user: { select: { id: true, name: true, email: true } },
+        medication: { select: { id: true, name: true, genericName: true, category: true, imageUrl: true } },
+      },
     });
 
     res.json(updated);
@@ -410,15 +585,11 @@ app.patch('/api/my-kit/:itemId', async (req: Request, res: Response, next: NextF
   }
 });
 
-// DELETE: ลบยาออกจากกระเป๋าทั้งชุดของผู้ใช้
-app.delete('/api/my-kit/:userId', async (req: Request, res: Response, next: NextFunction) => {
+app.delete('/api/reports/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = Number(req.params.userId);
-    await prisma.myKitItem.deleteMany({
-      where: { userId },
-    });
-
-    res.json({ message: 'ล้างกระเป๋ายาเรียบร้อยแล้ว' });
+    const id = Number(req.params.id);
+    await prisma.symptomReport.delete({ where: { id } });
+    res.json({ message: 'ลบรายงานอาการเรียบร้อยแล้ว', id });
   } catch (err) {
     next(err);
   }
@@ -427,7 +598,7 @@ app.delete('/api/my-kit/:userId', async (req: Request, res: Response, next: Next
 // ==========================================
 // Global Error Handler
 // ==========================================
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('Server Error:', err);
   res.status(500).json({
     message: err.message || 'เกิดข้อผิดพลาดภายในเซิร์ฟเวอร์',

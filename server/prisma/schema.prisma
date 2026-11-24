@@ -11,8 +11,10 @@ model User {
   email     String      @unique
   name      String
   password  String
+  role      String      @default("USER")
   createdAt DateTime    @default(now())
   kitItems  MyKitItem[]
+  reports   SymptomReport[]
 }
 
 model Medication {
@@ -35,6 +37,7 @@ model Medication {
   imageUrl          String?
   createdAt         DateTime    @default(now())
   kitItems          MyKitItem[]
+  reports           SymptomReport[]
 }
 
 model MyKitItem {
@@ -48,4 +51,20 @@ model MyKitItem {
   medication   Medication @relation(fields: [medicationId], references: [id], onDelete: Cascade)
 
   @@unique([userId, medicationId])
+}
+
+model SymptomReport {
+  id           Int        @id @default(autoincrement())
+  userId       Int
+  medicationId String
+  symptom      String
+  severity     String     @default("MILD")
+  description  String?    @default("")
+  status       String     @default("PENDING")
+  adminNote    String?    @default("")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  medication   Medication @relation(fields: [medicationId], references: [id], onDelete: Cascade)
 }
