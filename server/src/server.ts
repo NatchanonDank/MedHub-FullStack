@@ -9,16 +9,16 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-// ==========================================
-// 1. Health Check
-// ==========================================
+
+// Health Check
+
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', message: 'MedHub Final Project API is running' });
 });
 
-// ==========================================
-// 2. Authentication (พร้อม Role: USER / ADMIN)
-// ==========================================
+
+// Authentication (พร้อม Role: USER / ADMIN)
+
 app.post('/api/auth/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, name, password } = req.body;
@@ -79,9 +79,9 @@ app.post('/api/auth/login', async (req: Request, res: Response, next: NextFuncti
   }
 });
 
-// ==========================================
-// 3. Medications Full CRUD (Public Read + Admin C/U/D)
-// ==========================================
+
+// Medications Full CRUD (Public Read + Admin C/U/D)
+
 app.get('/api/medications', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { search, category, sort } = req.query;
@@ -131,7 +131,7 @@ app.get('/api/medications/:id', async (req: Request, res: Response, next: NextFu
   }
 });
 
-// ADMIN CREATE: เพิ่มยาใหม่เข้าระบบ
+// CREATE: เพิ่มยาใหม่เข้าระบบ
 app.post('/api/medications', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
@@ -188,7 +188,7 @@ app.post('/api/medications', async (req: Request, res: Response, next: NextFunct
   }
 });
 
-// ADMIN UPDATE: แก้ไขข้อมูลยา
+// UPDATE: แก้ไขข้อมูลยา
 app.put('/api/medications/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = String(req.params.id);
@@ -239,7 +239,7 @@ app.put('/api/medications/:id', async (req: Request, res: Response, next: NextFu
   }
 });
 
-// ADMIN DELETE: ลบยาออกจากฐานข้อมูล
+// DELETE: ลบยาออกจากฐานข้อมูล
 app.delete('/api/medications/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = String(req.params.id);
@@ -250,9 +250,9 @@ app.delete('/api/medications/:id', async (req: Request, res: Response, next: Nex
   }
 });
 
-// ==========================================
-// 4. Drug Interaction Checker
-// ==========================================
+
+// Drug Interaction Checker
+
 app.post('/api/interactions/check', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { med1Id, med2Id } = req.body;
@@ -435,9 +435,9 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
   }
 });
 
-// ==========================================
-// 5. Personal Collection (My Kit CRUD)
-// ==========================================
+
+// Personal Collection (My Kit CRUD)
+
 app.get('/api/my-kit/:userId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = Number(req.params.userId);
@@ -502,9 +502,9 @@ app.delete('/api/my-kit/:userId', async (req: Request, res: Response, next: Next
   }
 });
 
-// ==========================================
-// 6. Adverse Symptom Reports Full CRUD (User & Admin)
-// ==========================================
+
+// Adverse Symptom Reports Full CRUD (User & Admin)
+
 app.get('/api/reports', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { userId } = req.query;
@@ -595,9 +595,9 @@ app.delete('/api/reports/:id', async (req: Request, res: Response, next: NextFun
   }
 });
 
-// ==========================================
+
 // Global Error Handler
-// ==========================================
+
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('Server Error:', err);
   res.status(500).json({

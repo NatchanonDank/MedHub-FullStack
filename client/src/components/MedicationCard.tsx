@@ -6,13 +6,14 @@ const MedicationCard = ({ medication }: { medication: any }) => {
   return (
     <div className="card bg-base-100 shadow-sm border border-base-200 hover:shadow-md transition-all duration-200 h-full flex flex-col justify-between">
       <figure className="px-4 pt-6 h-44 bg-transparent">
-        <img 
-          src={medImage} 
-          alt={medication.name} 
-          className="h-full object-contain drop-shadow-md"
+        <img
+          src={medImage}
+          alt={medication.name}
           onError={(e) => {
-            (e.currentTarget as HTMLImageElement).src = '/icon.png';
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = '/icon.png';
           }}
+          className="..."
         />
       </figure>
       <div className="card-body p-5 flex flex-col flex-1 text-center items-center">    

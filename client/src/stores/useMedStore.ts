@@ -8,7 +8,7 @@ export interface AuthUser {
   role: 'USER' | 'ADMIN';
 }
 
-interface MedState {
+interface MedStoreState {
   user: AuthUser | null;
   isAuthModalOpen: boolean;
   setUser: (user: AuthUser | null) => void;
@@ -17,12 +17,11 @@ interface MedState {
   closeAuthModal: () => void;
 }
 
-export const useMedStore = create<MedState>()(
+export const useMedStore = create<MedStoreState>()(
   persist(
     (set) => ({
       user: null,
       isAuthModalOpen: false,
-
       setUser: (user) => set({ user, isAuthModalOpen: false }),
       logout: () => set({ user: null }),
       openAuthModal: () => set({ isAuthModalOpen: true }),

@@ -1,10 +1,10 @@
-import type { AuthUser } from '../stores/useMedStore';
+import { type AuthUser } from '../stores/useMedStore';
+export type { AuthUser };
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
-// ==========================================
-// 1. Interfaces & Types
-// ==========================================
+// Interfaces & Types
+
 export interface Medication {
   id: string;
   name: string;
@@ -99,9 +99,9 @@ const handleResponse = async <T>(res: Response): Promise<T> => {
   return data as T;
 };
 
-// ==========================================
-// 2. Medications Full CRUD API
-// ==========================================
+
+// Medications Full CRUD API
+
 export const fetchMedicationsApi = async (): Promise<MedicationApiResponse> => {
   const res = await fetch(`${API_BASE_URL}/medications`);
   return handleResponse<MedicationApiResponse>(res);
@@ -140,9 +140,9 @@ export const deleteMedication = async (id: string): Promise<void> => {
   await handleResponse(res);
 };
 
-// ==========================================
-// 3. Interaction Checker API
-// ==========================================
+
+// Interaction Checker API
+
 export const checkInteractionApi = async (
   med1Id: string,
   med2Id: string
@@ -155,9 +155,9 @@ export const checkInteractionApi = async (
   return handleResponse<InteractionResult>(res);
 };
 
-// ==========================================
-// 4. Authentication API
-// ==========================================
+
+// Authentication API
+
 export const loginApi = async (email: string, password: string): Promise<{ user: AuthUser }> => {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
@@ -180,9 +180,9 @@ export const registerApi = async (
   return handleResponse<{ user: AuthUser }>(res);
 };
 
-// ==========================================
-// 5. Personal Collection (My Kit) CRUD API
-// ==========================================
+
+// Personal Collection (My Kit) CRUD API
+
 export const fetchMyKitApi = async (userId: number): Promise<MyKitItem[]> => {
   const res = await fetch(`${API_BASE_URL}/my-kit/${userId}`);
   return handleResponse<MyKitItem[]>(res);
@@ -217,9 +217,9 @@ export const clearMyKitApi = async (userId: number): Promise<{ message: string }
   return handleResponse<{ message: string }>(res);
 };
 
-// ==========================================
-// 6. Symptom Reports CRUD API (User & Admin)
-// ==========================================
+
+// Symptom Reports CRUD API (User & Admin)
+
 export const fetchSymptomReports = async (userId?: number): Promise<SymptomReport[]> => {
   const url = userId ? `${API_BASE_URL}/reports?userId=${userId}` : `${API_BASE_URL}/reports`;
   const res = await fetch(url);

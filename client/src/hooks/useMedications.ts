@@ -22,9 +22,9 @@ import {
   type ReportStatus,
 } from '../api/medicationApi';
 
-// ==========================================
-// 1. Medications Queries & Admin Mutations
-// ==========================================
+
+// Medications Queries & Admin Mutations
+
 export const useMedications = (
   _search?: string,
   _category?: string,
@@ -84,9 +84,9 @@ export const useDeleteMedication = () => {
   });
 };
 
-// ==========================================
-// 2. Personal Collection (My Kit) CRUD
-// ==========================================
+
+// Personal Collection (My Kit) CRUD
+
 export const useMyKit = () => {
   const queryClient = useQueryClient();
   const { user, openAuthModal } = useMedStore();
@@ -158,9 +158,9 @@ export const useMyKit = () => {
   };
 };
 
-// ==========================================
-// 3. Symptom Reports Queries & Mutations
-// ==========================================
+
+// Symptom Reports Queries & Mutations
+
 export const useSymptomReports = (userId?: number) => {
   return useQuery({
     queryKey: ['symptom-reports', userId ?? 'all'],

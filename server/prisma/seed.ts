@@ -32,7 +32,7 @@ interface SeedMedication {
 async function main() {
   console.log('Starting Final Project database seed...');
 
-  // 1. สร้างบัญชี Admin และ User ตัวอย่าง
+  // สร้างบัญชี Admin และ User ตัวอย่าง
   const adminUser = await prisma.user.upsert({
     where: { email: 'admin@medhub.com' },
     update: { role: 'ADMIN' },
@@ -57,9 +57,16 @@ async function main() {
 
   console.log(`Seeded users: ${adminUser.email} (ADMIN) & ${demoUser.email} (USER)`);
 
-  // 2. Seed ข้อมูลยา 49 รายการจาก server/prisma/data/medications.json
+  // Seed ข้อมูลยารวม 100 รายการจาก medications.json (49) + medications_extra.json (51)
   const jsonPath = path.resolve(__dirname, './data/medications.json');
-  const medications: SeedMedication[] = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+  const extraJsonPath = path.resolve(__dirname, './data/medications_extra.json');
+
+  const baseMedications: SeedMedication[] = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+  const extraMedications: SeedMedication[] = fs.existsSync(extraJsonPath)
+    ? JSON.parse(fs.readFileSync(extraJsonPath, 'utf-8'))
+    : [];
+
+  const medications: SeedMedication[] = [...baseMedications, ...extraMedications];
 
   for (const med of medications) {
     await prisma.medication.upsert({
@@ -105,7 +112,7 @@ async function main() {
   }
   console.log(`Seeded ${medications.length} medications successfully.`);
 
-  // 3. Seed รายงานอาการไม่พึงประสงค์ตัวอย่างในชุมชน
+  // Seed รายงานอาการไม่พึงประสงค์ตัวอย่างในชุมชน
   const existingReports = await prisma.symptomReport.count();
   if (existingReports === 0) {
     await prisma.symptomReport.createMany({
