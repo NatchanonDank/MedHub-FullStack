@@ -25,12 +25,13 @@
       "หากต้องพ่นซ้ำบ่อยกว่าปกติ ควรพบแพทย์ทันที"
     ],
     "interactions": [
-      "Beta-blockers",
-      "Diuretics",
+      "Metoprolol",
+      "Furosemide",
       "Digoxin"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/albuterol.png"
+    "imageUrl": "/images/albuterol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_002",
@@ -62,7 +63,8 @@
       "Amoxicillin"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/allopurinol.png"
+    "imageUrl": "/images/allopurinol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_003",
@@ -92,11 +94,12 @@
     ],
     "interactions": [
       "Alcohol",
-      "Opioids",
+      "Morphine",
       "Ketoconazole"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/alprazolam.png"
+    "imageUrl": "/images/alprazolam.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_004",
@@ -127,11 +130,12 @@
     ],
     "interactions": [
       "MAOIs",
-      "SSRIs",
+      "Sertraline",
       "CNS Depressants"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/amitriptyline.png"
+    "imageUrl": "/images/amitriptyline.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_005",
@@ -164,7 +168,8 @@
       "Grapefruit juice"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/amlodipine.png"
+    "imageUrl": "/images/amlodipine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_006",
@@ -196,7 +201,8 @@
       "Allopurinol"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/amoxicillin.png"
+    "imageUrl": "/images/amoxicillin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_007",
@@ -230,7 +236,8 @@
       "Ketoconazole"
     ],
     "pregnancyCategory": "B / C",
-    "imageUrl": "/images/apixaban.png"
+    "imageUrl": "/images/apixaban.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_008",
@@ -264,7 +271,8 @@
       "Ibuprofen"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/aspirin.png"
+    "imageUrl": "/images/aspirin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_009",
@@ -293,12 +301,13 @@
       "ระวังการใช้ในผู้ป่วยโรคหอบหืด"
     ],
     "interactions": [
-      "Calcium Channel Blockers",
+      "Amlodipine",
       "Digoxin",
       "NSAIDs"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/atenolol.png"
+    "imageUrl": "/images/atenolol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_010",
@@ -326,12 +335,13 @@
       "ห้ามใช้ในสตรีมีครรภ์"
     ],
     "interactions": [
-      "Macrolide antibiotics",
+      "Azithromycin",
       "Grapefruit juice",
-      "Fibrates"
+      "Fenofibrate"
     ],
     "pregnancyCategory": "X",
-    "imageUrl": "/images/atorvastatin.png"
+    "imageUrl": "/images/atorvastatin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_011",
@@ -359,12 +369,13 @@
       "ระวังการใช้ในผู้ป่วยที่มีประวัติคลื่นไฟฟ้าหัวใจผิดปกติ"
     ],
     "interactions": [
-      "Antacids",
+      "Famotidine",
       "Warfarin",
       "Digoxin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/azithromycin.png"
+    "imageUrl": "/images/azithromycin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_012",
@@ -397,7 +408,8 @@
       "CYP2D6 inhibitors"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/carvedilol.png"
+    "imageUrl": "/images/carvedilol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_013",
@@ -429,7 +441,8 @@
       "Alcohol"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/cetirizine.png"
+    "imageUrl": "/images/cetirizine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_014",
@@ -457,13 +470,14 @@
       "ห้ามรับประทานพร้อมนม แคลเซียม หรือยาลดกรด"
     ],
     "interactions": [
-      "Iron supplements",
-      "Calcium",
+      "Ferrous Fumarate",
+      "Calcium Carbonate",
       "Theophylline",
       "Tizanidine"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/ciprofloxacin.png"
+    "imageUrl": "/images/ciprofloxacin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_015",
@@ -497,7 +511,8 @@
       "Warfarin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/clopidogrel.png"
+    "imageUrl": "/images/clopidogrel.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_016",
@@ -527,10 +542,11 @@
     "interactions": [
       "Amiodarone",
       "Verapamil",
-      "Diuretics"
+      "Furosemide"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/digoxin.png"
+    "imageUrl": "/images/digoxin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_017",
@@ -558,12 +574,13 @@
       "ห้ามใช้ในสตรีมีครรภ์และเด็กเล็ก"
     ],
     "interactions": [
-      "Antacids",
-      "Iron supplements",
-      "Dairy products"
+      "Famotidine",
+      "Ferrous Fumarate",
+      "Calcium Carbonate"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/doxycycline.png"
+    "imageUrl": "/images/doxycycline.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_018",
@@ -595,7 +612,8 @@
       "Warfarin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/enoxaparin.png"
+    "imageUrl": "/images/enoxaparin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_019",
@@ -622,12 +640,13 @@
       "ต้องไปโรงพยาบาลทันทีหลังการใช้ยา"
     ],
     "interactions": [
-      "Beta-blockers",
+      "Metoprolol",
       "MAOIs",
-      "Tricyclic Antidepressants"
+      "Amitriptyline"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/epinephrine.png"
+    "imageUrl": "/images/epinephrine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_020",
@@ -657,11 +676,12 @@
     "interactions": [
       "MAOIs",
       "NSAIDs",
-      "Other SSRIs",
+      "Sertraline",
       "St. John's Wort"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/escitalopram.png"
+    "imageUrl": "/images/escitalopram.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_021",
@@ -693,7 +713,8 @@
       "Itraconazole"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/famotidine.png"
+    "imageUrl": "/images/famotidine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_022",
@@ -722,12 +743,13 @@
     ],
     "interactions": [
       "Warfarin",
-      "Statins",
+      "Simvastatin",
       "Phenytoin",
       "Amiodarone"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/fluconazole.png"
+    "imageUrl": "/images/fluconazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_023",
@@ -761,7 +783,8 @@
       "Lithium"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/fluoxetine.png"
+    "imageUrl": "/images/fluoxetine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_024",
@@ -795,7 +818,8 @@
       "Aminoglycosides"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/furosemide.png"
+    "imageUrl": "/images/furosemide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_025",
@@ -823,12 +847,13 @@
       "ห้ามหยุดยากะทันหัน"
     ],
     "interactions": [
-      "Antacids",
+      "Famotidine",
       "CNS Depressants",
       "Morphine"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/gabapentin.png"
+    "imageUrl": "/images/gabapentin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_026",
@@ -859,10 +884,11 @@
       "Lithium",
       "Digoxin",
       "NSAIDs",
-      "Antidiabetic drugs"
+      "Metformin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/hydrochlorothiazide.png"
+    "imageUrl": "/images/hydrochlorothiazide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_027",
@@ -893,10 +919,11 @@
       "Aspirin",
       "Warfarin",
       "Antihypertensives",
-      "SSRI"
+      "Sertraline"
     ],
     "pregnancyCategory": "D (ในไตรมาสที่ 3)",
-    "imageUrl": "/images/ibuprofen.png"
+    "imageUrl": "/images/ibuprofen.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_028",
@@ -922,12 +949,13 @@
       "ห้ามผสมกับอินซูลินชนิดอื่นในเข็มเดียวกัน"
     ],
     "interactions": [
-      "Beta-blockers",
-      "Corticosteroids",
-      "Thiazides"
+      "Metoprolol",
+      "Prednisone",
+      "Hydrochlorothiazide"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/insulinglargine.png"
+    "imageUrl": "/images/insulinglargine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_029",
@@ -954,12 +982,13 @@
       "ห้ามใช้เพื่อลดน้ำหนัก"
     ],
     "interactions": [
-      "Calcium supplements",
-      "Iron supplements",
-      "Antacids"
+      "Calcium Carbonate",
+      "Ferrous Fumarate",
+      "Famotidine"
     ],
     "pregnancyCategory": "A",
-    "imageUrl": "/images/levothyroxine.png"
+    "imageUrl": "/images/levothyroxine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_030",
@@ -990,10 +1019,11 @@
     "interactions": [
       "NSAIDs",
       "Potassium supplements",
-      "ARBs"
+      "Losartan"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/lisinopril.png"
+    "imageUrl": "/images/lisinopril.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_031",
@@ -1025,7 +1055,8 @@
       "Lithium"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/losartan.png"
+    "imageUrl": "/images/losartan.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_032",
@@ -1057,7 +1088,8 @@
       "Cimetidine"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/metformin.png"
+    "imageUrl": "/images/metformin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_033",
@@ -1086,11 +1118,12 @@
     ],
     "interactions": [
       "NSAIDs",
-      "Penicillins",
-      "PPIs"
+      "Amoxicillin",
+      "Omeprazole"
     ],
     "pregnancyCategory": "X",
-    "imageUrl": "/images/methotrexate.png"
+    "imageUrl": "/images/methotrexate.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_034",
@@ -1123,7 +1156,8 @@
       "Digoxin"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/metoprolol.png"
+    "imageUrl": "/images/metoprolol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_035",
@@ -1155,7 +1189,8 @@
       "Rifampin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/montelukast.png"
+    "imageUrl": "/images/montelukast.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_036",
@@ -1180,10 +1215,11 @@
       "ฤทธิ์ยาอาจหมดเร็วจึงต้องเฝ้าระวังต่อเนื่อง"
     ],
     "interactions": [
-      "Opioid Analgesics"
+      "Morphine"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/naloxone.png"
+    "imageUrl": "/images/naloxone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_037",
@@ -1212,11 +1248,12 @@
     ],
     "interactions": [
       "Warfarin",
-      "ACE Inhibitors",
+      "Enalapril",
       "Aspirin"
     ],
     "pregnancyCategory": "C (D ในไตรมาสที่ 3)",
-    "imageUrl": "/images/naproxen.png"
+    "imageUrl": "/images/naproxen.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_038",
@@ -1248,7 +1285,8 @@
       "Digoxin"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/omeprazole.png"
+    "imageUrl": "/images/omeprazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_039",
@@ -1278,7 +1316,8 @@
       "Amiodarone"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/ondansetron.png"
+    "imageUrl": "/images/ondansetron.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_040",
@@ -1305,11 +1344,12 @@
       "ปลอดภัยกว่า Omeprazole เมื่อใช้ร่วมกับ Clopidogrel"
     ],
     "interactions": [
-      "Iron supplements",
+      "Ferrous Fumarate",
       "Ketoconazole"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/pantoprazole.png"
+    "imageUrl": "/images/pantoprazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_041",
@@ -1338,11 +1378,12 @@
     ],
     "interactions": [
       "NSAIDs",
-      "Diuretics",
+      "Furosemide",
       "Vaccines"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/prednisone.png"
+    "imageUrl": "/images/prednisone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_042",
@@ -1373,7 +1414,8 @@
       "Warfarin"
     ],
     "pregnancyCategory": "X",
-    "imageUrl": "/images/rosuvastatin.png"
+    "imageUrl": "/images/rosuvastatin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_043",
@@ -1398,16 +1440,17 @@
       "ปากแห้ง"
     ],
     "warnings": [
-      "ใช้เวลา 2-6 สัปดาห์จึงจะออกฤทธิ์เต็มที่",
+      "ใช้เวลา 2-6 สปดาห์จึงจะออกฤทธิ์เต็มที่",
       "ระวังความเสี่ยงพฤติกรรมทำร้ายตัวเองในช่วงเริ่มยา"
     ],
     "interactions": [
       "MAOIs",
       "NSAIDs",
-      "Other Serotonergic drugs"
+      "Sertraline"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/sertraline.png"
+    "imageUrl": "/images/sertraline.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_044",
@@ -1434,13 +1477,14 @@
       "ต้องตรวจเลือดติดตามค่าเกลือแร่สม่ำเสมอ"
     ],
     "interactions": [
-      "ACE inhibitors",
-      "ARBs",
+      "Enalapril",
+      "Losartan",
       "NSAIDs",
       "Potassium supplements"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/spironolactone.png"
+    "imageUrl": "/images/spironolactone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_045",
@@ -1469,10 +1513,11 @@
     "interactions": [
       "MAOIs",
       "Ergotamine",
-      "SSRIs"
+      "Sertraline"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/sumatriptan.png"
+    "imageUrl": "/images/sumatriptan.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_046",
@@ -1500,10 +1545,11 @@
     "interactions": [
       "Sildenafil",
       "Cimetidine",
-      "Blood pressure medications"
+      "Amlodipine"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/tamsulosin.png"
+    "imageUrl": "/images/tamsulosin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_047",
@@ -1529,13 +1575,14 @@
       "อาจเพิ่มความเสี่ยงการชัก"
     ],
     "interactions": [
-      "SSRIs",
+      "Sertraline",
       "Alcohol",
-      "Benzodiazepines",
+      "Diazepam",
       "MAOIs"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/tramadol.png"
+    "imageUrl": "/images/tramadol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_048",
@@ -1566,7 +1613,8 @@
       "Lithium"
     ],
     "pregnancyCategory": "D",
-    "imageUrl": "/images/valsartan.png"
+    "imageUrl": "/images/valsartan.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   },
   {
     "id": "med_049",
@@ -1601,6 +1649,1785 @@
       "Herbal supplements"
     ],
     "pregnancyCategory": "X",
-    "imageUrl": "/images/warfarin.png"
+    "imageUrl": "/images/warfarin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_050",
+    "name": "Ampicillin",
+    "genericName": "Ampicillin",
+    "brandName": "Principen / Ampicillin",
+    "strength": "500 mg",
+    "dosageForm": "Capsule",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาปฏิชีวนะ (Penicillin)",
+    "dosageInstruction": "รับประทานครั้งละ 1 แคปซูล ทุก 6 ชั่วโมง ขณะท้องว่าง (ก่อนอาหาร 1 ชั่วโมง หรือหลังอาหาร 2 ชั่วโมง)",
+    "appearance": "แคปซูลสีแดง-ดำ หรือ ขาว-แดง",
+    "indications": [
+      "ติดเชื้อทางเดินหายใจส่วนบนและล่าง",
+      "ติดเชื้อในระบบทางเดินปัสสาวะ",
+      "ติดเชื้อในระบบทางเดินอาหาร"
+    ],
+    "sideEffects": [
+      "คลื่นไส้",
+      "ท้องเสีย",
+      "ผื่นแพ้ยา"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ที่แพ้ยากลุ่ม Penicillin",
+      "รับประทานยาให้ครบตามแพทย์สั่ง"
+    ],
+    "interactions": [
+      "Allopurinol",
+      "Warfarin",
+      "Methotrexate"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/ampicillin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_051",
+    "name": "Cloxacillin",
+    "genericName": "Cloxacillin",
+    "brandName": "Orbenin / Cloxacillin",
+    "strength": "500 mg",
+    "dosageForm": "Capsule",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ทานตอนท้องว่าง",
+    "dosageInstruction": "รับประทานครั้งละ 1 แคปซูล วันละ 4 ครั้ง ก่อนอาหาร 1 ชั่วโมง",
+    "appearance": "แคปซูลสีส้ม-ดำ",
+    "indications": [
+      "ติดเชื้อที่ผิวหนังและเนื้อเยื่ออ่อน",
+      "ฝี หนอง แผลติดเชื้อแบคทีเรีย",
+      "กระดูกและข้ออักเสบติดเชื้อ"
+    ],
+    "sideEffects": [
+      "ระคายเคืองกระเพาะอาหาร",
+      "คลื่นไส้",
+      "ผื่นลมพิษ"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ที่แพ้ Penicillin",
+      "อาหารลดการดูดซึมยา ควรทานตอนท้องว่าง"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Methotrexate"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/cloxacillin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_052",
+    "name": "Piperacillin / Tazobactam",
+    "genericName": "Piperacillin",
+    "brandName": "Tazocin",
+    "strength": "4.5 g",
+    "dosageForm": "Injection",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาใช้ในโรงพยาบาล",
+    "dosageInstruction": "ฉีดเข้าหลอดเลือดดำช้าๆ ทุก 6-8 ชั่วโมง ภายใต้การดูแลของแพทย์ในโรงพยาบาล",
+    "appearance": "ผงยาปราศจากเชื้อสีขาวสำหรับละลายฉีด",
+    "indications": [
+      "ติดเชื้อรุนแรงในโรงพยาบาล",
+      "ปอดอักเสบในโรงพยาบาล",
+      "ติดเชื้อในช่องท้องรุนแรง"
+    ],
+    "sideEffects": [
+      "ท้องเสีย",
+      "ผื่นแพ้ยา",
+      "เกล็ดเลือดต่ำ",
+      "ระคายเคืองบริเวณที่ฉีด"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ป่วยแพ้ Penicillin หรือ Beta-lactam",
+      "ปรับขนาดยาในผู้ป่วยไตเสื่อม"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Enoxaparin",
+      "Methotrexate"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/piperacillin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_053",
+    "name": "Cefixime",
+    "genericName": "Cefixime",
+    "brandName": "Suprax",
+    "strength": "100 mg",
+    "dosageForm": "Capsule",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาปฏิชีวนะ",
+    "dosageInstruction": "รับประทานครั้งละ 200-400 มก. วันละครั้ง หรือแบ่งให้วันละ 2 ครั้ง",
+    "appearance": "แคปซูลสีขาว-ม่วง",
+    "indications": [
+      "ไข้ไทฟอยด์",
+      "ติดเชื้อทางเดินปัสสาวะ",
+      "หลอดลมอักเสบและปอดอักเสบ",
+      "โรคหนองในแท้"
+    ],
+    "sideEffects": [
+      "ถ่ายเหลว",
+      "ปวดท้อง",
+      "คลื่นไส้",
+      "เวียนศีรษะ"
+    ],
+    "warnings": [
+      "ระวังการแพ้ข้ามกลุ่มในผู้ที่แพ้ Penicillin รุนแรง",
+      "ทานยาให้ครบคอร์ส"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Carbamazepine"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/cefixime.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_054",
+    "name": "Ceftriaxone",
+    "genericName": "Ceftriaxone",
+    "brandName": "Rocephin",
+    "strength": "1 g",
+    "dosageForm": "Injection",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาปฏิชีวนะ",
+    "dosageInstruction": "ฉีดเข้ากล้ามเนื้อหรือหลอดเลือดดำ วันละ 1-2 กรัม ตามแผนการรักษาของแพทย์",
+    "appearance": "ผงยาปราศจากเชื้อสีขาวอมเหลือง",
+    "indications": [
+      "ปอดอักเสบรุนแรง",
+      "เยื่อหุ้มสมองอักเสบ",
+      "ติดเชื้อในกระแสเลือด",
+      "ติดเชื้อในช่องท้อง"
+    ],
+    "sideEffects": [
+      "ปวดบริเวณที่ฉีด",
+      "ท้องเสีย",
+      "นิ่วในถุงน้ำดีชั่วคราว",
+      "ผื่นแพ้ยา"
+    ],
+    "warnings": [
+      "ห้ามผสมร่วมกับสารละลายที่มีแคลเซียม (เช่น Ringer's Lactate)",
+      "ระวังในผู้แพ้ Penicillin"
+    ],
+    "interactions": [
+      "Calcium Carbonate",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/ceftriaxone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_055",
+    "name": "Cefotaxime",
+    "genericName": "Cefotaxime",
+    "brandName": "Claforan",
+    "strength": "1 g",
+    "dosageForm": "Injection",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาปฏิชีวนะ",
+    "dosageInstruction": "ฉีดเข้าหลอดเลือดดำหรือกล้ามเนื้อ ทุก 8-12 ชั่วโมง ตามคำสั่งแพทย์",
+    "appearance": "ผงยาปราศจากเชื้อสีขาวนวล",
+    "indications": [
+      "ไซนัสอักเสบรุนแรง",
+      "หลอดลมอักเสบและปอดอักเสบ",
+      "ติดเชื้อในระบบประสาทส่วนกลาง"
+    ],
+    "sideEffects": [
+      "อักเสบบริเวณหลอดเลือดที่ฉีด",
+      "ผื่นผิวหนัง",
+      "ท้องเสีย"
+    ],
+    "warnings": [
+      "ปรับขนาดยาในผู้ป่วยไตบกพร่อง",
+      "ระวังในผู้ที่เคยแพ้กลุ่ม Cephalosporin"
+    ],
+    "interactions": [
+      "Furosemide",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/cefotaxime.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_056",
+    "name": "Cefpodoxime",
+    "genericName": "Cefpodoxime",
+    "brandName": "Banan / Vantin",
+    "strength": "100 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาปฏิชีวนะ",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 2 ครั้ง พร้อมอาหารเพื่อเพิ่มการดูดซึม",
+    "appearance": "เม็ดเคลือบฟิล์มสีส้มอ่อน",
+    "indications": [
+      "ปอดอักเสบชุมชน",
+      "หลอดลมอักเสบเฉียบพลัน",
+      "ทอนซิลอักเสบและไซนัสอักเสบ"
+    ],
+    "sideEffects": [
+      "ท้องเสีย",
+      "คลื่นไส้",
+      "ปวดศีรษะ"
+    ],
+    "warnings": [
+      "ควรทานพร้อมอาหาร",
+      "ยาลดกรดอาจลดการดูดซึมของยานี้"
+    ],
+    "interactions": [
+      "Omeprazole",
+      "Pantoprazole",
+      "Famotidine",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/cefpodoxime.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_057",
+    "name": "Levofloxacin",
+    "genericName": "Levofloxacin",
+    "brandName": "Cravit",
+    "strength": "500 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามทานพร้อมนม/แร่ธาตุ",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง ห่างจากแคลเซียมหรือธาตุเหล็กอย่างน้อย 2 ชั่วโมง",
+    "appearance": "เม็ดยาวรีสีชมพูอ่อน มีขีดแบ่งครึ่ง",
+    "indications": [
+      "ปอดอักเสบ",
+      "ไซนัสอักเสบเฉียบพลัน",
+      "ติดเชื้อทางเดินปัสสาวะซับซ้อน"
+    ],
+    "sideEffects": [
+      "คลื่นไส้",
+      "นอนไม่หลับ",
+      "เวียนศีรษะ",
+      "เอ็นร้อยหวายอักเสบ"
+    ],
+    "warnings": [
+      "ห้ามทานพร้อมนม แคลเซียม ธาตุเหล็ก หรือยาลดกรด",
+      "หลีกเลี่ยงแสงแดดจัด",
+      "หยุดยาทันทีหากปวดเอ็นร้อยหวาย"
+    ],
+    "interactions": [
+      "Calcium Carbonate",
+      "Ferrous Fumarate",
+      "Warfarin",
+      "Ibuprofen",
+      "Prednisone"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/levofloxacin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_058",
+    "name": "Ofloxacin",
+    "genericName": "Ofloxacin",
+    "brandName": "Tarivid",
+    "strength": "200 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามทานพร้อมนม/แร่ธาตุ",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 2 ครั้ง เช้า-เย็น",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "ติดเชื้อในระบบทางเดินปัสสาวะ",
+      "ท้องเสียติดเชื้อแบคทีเรีย",
+      "ต่อมลูกหมากอักเสบ"
+    ],
+    "sideEffects": [
+      "คลื่นไส้",
+      "ปวดศีรษะ",
+      "เวียนศีรษะ",
+      "ไวต่อแสงแดด"
+    ],
+    "warnings": [
+      "ห้ามใช้ในเด็กอายุต่ำกว่า 18 ปี และหญิงตั้งครรภ์",
+      "เว้นระยะห่างจากแร่ธาตุ 2 ชั่วโมง"
+    ],
+    "interactions": [
+      "Calcium Carbonate",
+      "Ferrous Fumarate",
+      "Warfarin",
+      "Ibuprofen"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/ofloxacin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_059",
+    "name": "Moxifloxacin",
+    "genericName": "Moxifloxacin",
+    "brandName": "Avelox",
+    "strength": "400 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามทานพร้อมแร่ธาตุ",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง",
+    "appearance": "เม็ดยาวรีสีแดงเข้ม",
+    "indications": [
+      "ปอดอักเสบติดเชื้อ",
+      "หลอดลมอักเสบเรื้อรังกำเริบ",
+      "ไซนัสอักเสบเฉียบพลัน"
+    ],
+    "sideEffects": [
+      "คลื่นไส้",
+      "ท้องเสีย",
+      "เวียนศีรษะ",
+      "คลื่นไฟฟ้าหัวใจ QT ยาวขึ้น"
+    ],
+    "warnings": [
+      "ระวังในผู้ป่วยหัวใจเต้นผิดจังหวะ",
+      "ห้ามทานพร้อมแคลเซียมหรือธาตุเหล็ก"
+    ],
+    "interactions": [
+      "Calcium Carbonate",
+      "Ferrous Fumarate",
+      "Amiodarone",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/moxifloxacin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_060",
+    "name": "Norfloxacin",
+    "genericName": "Norfloxacin",
+    "brandName": "Norxacin",
+    "strength": "400 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามทานพร้อมนม/แร่ธาตุ",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 2 ครั้ง ก่อนอาหาร 1 ชั่วโมง ดื่มน้ำตามมากๆ",
+    "appearance": "เม็ดเคลือบฟิล์มสีส้มหรือขาว",
+    "indications": [
+      "กระเพาะปัสสาวะอักเสบ",
+      "ติดเชื้อทางเดินปัสสาวะ",
+      "ท้องเสียเฉียบพลันจากแบคทีเรีย"
+    ],
+    "sideEffects": [
+      "ปวดท้อง",
+      "คลื่นไส้",
+      "เวียนศีรษะ",
+      "ปวดกล้ามเนื้อและเส้นเอ็น"
+    ],
+    "warnings": [
+      "ห้ามทานร่วมกับนม แคลเซียม และธาตุเหล็ก",
+      "ไม่ใช้ในหญิงตั้งครรภ์และเด็ก"
+    ],
+    "interactions": [
+      "Calcium Carbonate",
+      "Ferrous Fumarate",
+      "Warfarin",
+      "Ibuprofen"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/norfloxacin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_061",
+    "name": "Metronidazole",
+    "genericName": "Metronidazole",
+    "brandName": "Flagyl",
+    "strength": "400 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามดื่มแอลกอฮอล์",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 3 ครั้ง หลังอาหารทันที",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "ติดเชื้อในช่องปากและเหงือกอักเสบ",
+      "ติดเชื้อแบคทีเรียชนิดไม่ใช้ออกซิเจน",
+      "บิดมีตัวและพยาธิช่องคลอด"
+    ],
+    "sideEffects": [
+      "ขมในปาก (Metallic taste)",
+      "คลื่นไส้",
+      "ปัสสาวะสีเข้มขึ้น"
+    ],
+    "warnings": [
+      "ห้ามดื่มแอลกอฮอล์เด็ดขาดระหว่างใช้ยาและหลังหยุดยา 48 ชั่วโมง (เกิดอาการหน้าแดง คลื่นไส้รุนแรง)"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Ibuprofen"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/metronidazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_062",
+    "name": "Tinidazole",
+    "genericName": "Tinidazole",
+    "brandName": "Fasigyn",
+    "strength": "500 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามดื่มแอลกอฮอล์",
+    "dosageInstruction": "รับประทานตามขนาดที่แพทย์สั่งพร้อมอาหาร",
+    "appearance": "เม็ดเคลือบฟิล์มสีขาว",
+    "indications": [
+      "โรคบิดอะมีบา",
+      "ติดเชื้อโปรโตซัว Giardia",
+      "ติดเชื้อในช่องคลอดจากเชื้อ Trichomonas"
+    ],
+    "sideEffects": [
+      "ขมในปาก",
+      "เบื่ออาหาร",
+      "คลื่นไส้",
+      "อ่อนเพลีย"
+    ],
+    "warnings": [
+      "ห้ามดื่มเครื่องดื่มแอลกอฮอล์ระหว่างใช้ยาและหลังหยุดยา 72 ชั่วโมง"
+    ],
+    "interactions": [
+      "Warfarin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/tinidazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_063",
+    "name": "Ornidazole",
+    "genericName": "Ornidazole",
+    "brandName": "Tiberal",
+    "strength": "500 mg",
+    "dosageForm": "Tablet",
+    "category": "Antibiotic",
+    "prescriptionType": "Rx",
+    "specialTag": "ห้ามดื่มแอลกอฮอล์",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 2 ครั้ง เช้า-เย็น หลังอาหาร",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "ติดเชื้อในกระเพาะอาหารและลำไส้จากโปรโตซัว",
+      "ติดเชื้อแบคทีเรียไม่ใช้ออกซิเจน"
+    ],
+    "sideEffects": [
+      "ง่วงซึม",
+      "เวียนศีรษะ",
+      "คลื่นไส้"
+    ],
+    "warnings": [
+      "หลีกเลี่ยงแอลกอฮอล์ระหว่างใช้ยา",
+      "ระวังในผู้ป่วยโรคระบบประสาท"
+    ],
+    "interactions": [
+      "Warfarin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/ornidazole.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_064",
+    "name": "Mefenamic Acid (Ponstan)",
+    "genericName": "Mefenamic Acid",
+    "brandName": "Ponstan",
+    "strength": "500 mg",
+    "dosageForm": "Tablet",
+    "category": "NSAID",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานหลังอาหารทันที",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 3 ครั้ง หลังอาหารทันที ดื่มน้ำตามมากๆ",
+    "appearance": "เม็ดยาวรีสีเหลืองนวล",
+    "indications": [
+      "บรรเทาอาการปวดประจำเดือน",
+      "ปวดฟัน",
+      "ปวดกล้ามเนื้อและข้ออักเสบ"
+    ],
+    "sideEffects": [
+      "ระคายเคืองกระเพาะอาหาร",
+      "แสบท้อง",
+      "ท้องเสีย",
+      "เวียนศีรษะ"
+    ],
+    "warnings": [
+      "ห้ามใช้ร่วมกับยาต้านการอักเสบ NSAIDs ตัวอื่น (เช่น Ibuprofen) เพราะเสี่ยงเลือดออกในกระเพาะและไตวายเฉียบพลัน",
+      "ห้ามใช้ติดต่อกันเกิน 7 วัน"
+    ],
+    "interactions": [
+      "Ibuprofen",
+      "Naproxen",
+      "Aspirin",
+      "Warfarin",
+      "Lisinopril",
+      "Losartan"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/mefenamicacid.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_065",
+    "name": "Calcium Carbonate",
+    "genericName": "Calcium Carbonate",
+    "brandName": "Caltrate / Calcium",
+    "strength": "1000 mg",
+    "dosageForm": "Tablet",
+    "category": "Endocrine",
+    "prescriptionType": "OTC",
+    "specialTag": "แร่ธาตุเสริม",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1-2 ครั้ง พร้อมอาหาร",
+    "appearance": "เม็ดยาวรีสีขาวหรือชมพูอ่อน",
+    "indications": [
+      "เสริมแคลเซียมป้องกันและรักษาโรคกระดูกพรุน",
+      "บรรเทาอาการกรดเกินในกระเพาะ"
+    ],
+    "sideEffects": [
+      "ท้องผูก",
+      "ท้องอืด มีแก๊สในกระเพาะ"
+    ],
+    "warnings": [
+      "ห้ามทานพร้อมยาฆ่าเชื้อกลุ่ม Tetracycline (Doxycycline) หรือ Fluoroquinolone (Ciprofloxacin, Levofloxacin) และ Levothyroxine ต้องเว้นห่าง 2-4 ชั่วโมง"
+    ],
+    "interactions": [
+      "Doxycycline",
+      "Ciprofloxacin",
+      "Levofloxacin",
+      "Ofloxacin",
+      "Norfloxacin",
+      "Levothyroxine",
+      "Ceftriaxone"
+    ],
+    "pregnancyCategory": "A",
+    "imageUrl": "/images/calciumcarbonate.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_066",
+    "name": "Ferrous Fumarate (Iron)",
+    "genericName": "Ferrous Fumarate",
+    "brandName": "Ferrous Fumarate",
+    "strength": "200 mg",
+    "dosageForm": "Tablet",
+    "category": "Endocrine",
+    "prescriptionType": "OTC",
+    "specialTag": "ธาตุเหล็กบำรุงเลือด",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1-2 ครั้ง ก่อนอาหาร 1 ชั่วโมง (หากระคายเคืองกระเพาะให้ทานพร้อมอาหาร)",
+    "appearance": "เม็ดกลมเคลือบน้ำตาลสีแดงเข้ม",
+    "indications": [
+      "รักษาและป้องกันภาวะโลหิตจางจากการขาดธาตุเหล็ก",
+      "บำรุงเลือดในหญิงตั้งครรภ์"
+    ],
+    "sideEffects": [
+      "อุจจาระมีสีดำ (ปกติไม่อันตราย)",
+      "ท้องผูก",
+      "คลื่นไส้ ปวดท้อง"
+    ],
+    "warnings": [
+      "ห้ามทานพร้อมยาฆ่าเชื้อ Ciprofloxacin, Doxycycline และยาลดกรด ต้องเว้นระยะห่างอย่างน้อย 2 ชั่วโมง"
+    ],
+    "interactions": [
+      "Ciprofloxacin",
+      "Doxycycline",
+      "Levofloxacin",
+      "Ofloxacin",
+      "Norfloxacin",
+      "Levothyroxine"
+    ],
+    "pregnancyCategory": "A",
+    "imageUrl": "/images/ferrousfumarate.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_067",
+    "name": "Chlorpheniramine (CPM)",
+    "genericName": "Chlorpheniramine",
+    "brandName": "CPM",
+    "strength": "4 mg",
+    "dosageForm": "Tablet",
+    "category": "Antihistamine",
+    "prescriptionType": "OTC",
+    "specialTag": "ระวังง่วงซึม",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด ทุก 4-6 ชั่วโมง เมื่อมีอาการ",
+    "appearance": "เม็ดกลมเล็กสีเหลือง",
+    "indications": [
+      "บรรเทาอาการแพ้อากาศ จาม น้ำมูกไหล",
+      "ผื่นคัน ลมพิษ"
+    ],
+    "sideEffects": [
+      "ง่วงซึมมาก",
+      "ปากแห้ง คอแห้ง",
+      "ตาพร่า",
+      "ปัสสาวะลำบาก"
+    ],
+    "warnings": [
+      "ทำให้ง่วงซึม ห้ามขับขี่ยานพาหนะหรือทำงานกับเครื่องจักร",
+      "หลีกเลี่ยงการใช้ร่วมกับยาคลายกล้ามเนื้อ ยานอนหลับ และแอลกอฮอล์"
+    ],
+    "interactions": [
+      "Orphenadrine",
+      "Alprazolam",
+      "Diazepam",
+      "Amitriptyline",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/chlorpheniramine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_068",
+    "name": "Pseudoephedrine",
+    "genericName": "Pseudoephedrine",
+    "brandName": "Sudafed",
+    "strength": "60 mg",
+    "dosageForm": "Tablet",
+    "category": "Respiratory",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาแก้คัดจมูก",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด ทุก 6 ชั่วโมง ไม่เกิน 4 เม็ดต่อวัน",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "บรรเทาอาการคัดจมูก แน่นจมูกจากหวัดหรือไซนัสอักเสบ"
+    ],
+    "sideEffects": [
+      "ใจสั่น หัวใจเต้นเร็ว",
+      "ความดันโลหิตสูงขึ้น",
+      "นอนไม่หลับ",
+      "มือสั่น"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ป่วยความดันโลหิตสูงรุนแรงหรือโรคหลอดเลือดหัวใจ",
+      "ต้านฤทธิ์ยาลดความดันโลหิตหลายชนิด"
+    ],
+    "interactions": [
+      "Amlodipine",
+      "Losartan",
+      "Lisinopril",
+      "Enalapril",
+      "Atenolol",
+      "Metoprolol",
+      "Valsartan"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/pseudoephedrine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_069",
+    "name": "Paracetamol",
+    "genericName": "Paracetamol",
+    "brandName": "Tylenol / Sara",
+    "strength": "500 mg",
+    "dosageForm": "Tablet",
+    "category": "Analgesic",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาสามัญประจำบ้าน",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด ทุก 4-6 ชั่วโมง เมื่อมีอาการปวดหรือมีไข้",
+    "appearance": "เม็ดกลมหรือรีสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "ลดไข้",
+      "บรรเทาอาการปวดศีรษะ",
+      "ปวดฟันและปวดเมื่อยกล้ามเนื้อ"
+    ],
+    "sideEffects": [
+      "ผื่นแพ้ยา (พบได้น้อย)",
+      "เป็นพิษต่อตับหากใช้เกินขนาด"
+    ],
+    "warnings": [
+      "ห้ามรับประทานเกินวันละ 4,000 มก. (8 เม็ด) และห้ามใช้ติดต่อกันเกิน 5 วัน",
+      "ระวังการใช้ซ้ำซ้อนกับยาแก้หวัดสูตรผสม"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Carbamazepine"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/paracetamol.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_070",
+    "name": "Celecoxib",
+    "genericName": "Celecoxib",
+    "brandName": "Celebrex",
+    "strength": "200 mg",
+    "dosageForm": "Capsule",
+    "category": "NSAID",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยาต้านอักเสบกลุ่มเฉพาะ",
+    "dosageInstruction": "รับประทานครั้งละ 1 แคปซูล วันละ 1-2 ครั้ง",
+    "appearance": "แคปซูลสีขาว คาดแถบสีทอง",
+    "indications": [
+      "ข้อเข่าเสื่อม",
+      "ข้ออักเสบรูมาตอยด์",
+      "ปวดเฉียบพลันหลังผ่าตัดหรือปวดประจำเดือน"
+    ],
+    "sideEffects": [
+      "ปวดท้องเล็กน้อย",
+      "บวมน้ำ",
+      "ความดันโลหิตสูงขึ้น"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ที่แพ้ยากลุ่ม Sulfa",
+      "ระวังในผู้ป่วยโรคหัวใจและหลอดเลือด",
+      "ห้ามใช้ร่วมกับ NSAIDs ตัวอื่น"
+    ],
+    "interactions": [
+      "Ibuprofen",
+      "Naproxen",
+      "Mefenamic Acid",
+      "Warfarin",
+      "Aspirin",
+      "Lisinopril"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/celecoxib.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_071",
+    "name": "Etoricoxib",
+    "genericName": "Etoricoxib",
+    "brandName": "Arcoxia",
+    "strength": "90 mg",
+    "dosageForm": "Tablet",
+    "category": "NSAID",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยาต้านอักเสบกลุ่มเฉพาะ",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง",
+    "appearance": "เม็ดรูปแอปเปิลสีขาว",
+    "indications": [
+      "โรคข้อเสื่อมและข้ออักเสบรูมาตอยด์",
+      "โรคเกาต์เฉียบพลัน",
+      "ปวดหลังส่วนล่างเรื้อรัง"
+    ],
+    "sideEffects": [
+      "ความดันโลหิตสูงขึ้น",
+      "บวมตามปลายเท้า",
+      "เวียนศีรษะ",
+      "แสบท้อง"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ป่วยความดันโลหิตสูงที่ยังคุมไม่ได้ และโรคหัวใจขาดเลือด",
+      "ห้ามใช้ร่วมกับ NSAIDs อื่น"
+    ],
+    "interactions": [
+      "Ibuprofen",
+      "Naproxen",
+      "Mefenamic Acid",
+      "Warfarin",
+      "Aspirin",
+      "Losartan"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/etoricoxib.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_072",
+    "name": "Diclofenac",
+    "genericName": "Diclofenac",
+    "brandName": "Voltaren",
+    "strength": "25 mg",
+    "dosageForm": "Tablet",
+    "category": "NSAID",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานหลังอาหารทันที",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 2-3 ครั้ง หลังอาหารทันที ห้ามเคี้ยวเม็ดยา",
+    "appearance": "เม็ดกลมเคลือบฟิล์มสีเหลือง",
+    "indications": [
+      "ปวดอักเสบกล้ามเนื้อและเส้นเอ็น",
+      "ข้ออักเสบ",
+      "ปวดหลังและปวดประจำเดือน"
+    ],
+    "sideEffects": [
+      "ระคายเคืองกระเพาะอาหาร",
+      "แผลในกระเพาะอาหาร",
+      "บวมน้ำ",
+      "การทำงานของไตลดลง"
+    ],
+    "warnings": [
+      "ห้ามใช้ร่วมกับ NSAIDs ตัวอื่น",
+      "ระวังในผู้ป่วยโรคกระเพาะอาหาร โรคไต และโรคหัวใจ"
+    ],
+    "interactions": [
+      "Ibuprofen",
+      "Naproxen",
+      "Mefenamic Acid",
+      "Warfarin",
+      "Aspirin",
+      "Furosemide"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/diclofenac.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_073",
+    "name": "Meloxicam",
+    "genericName": "Meloxicam",
+    "brandName": "Mobic",
+    "strength": "7.5 mg",
+    "dosageForm": "Tablet",
+    "category": "NSAID",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานหลังอาหารทันที",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 1 ครั้ง หลังอาหาร",
+    "appearance": "เม็ดกลมสีเหลืองอ่อน",
+    "indications": [
+      "โรคข้อเข่าเสื่อม",
+      "ข้ออักเสบรูมาตอยด์",
+      "ข้อสันหลังอักเสบยึดติด"
+    ],
+    "sideEffects": [
+      "ปวดท้อง ท้องอืด",
+      "คลื่นไส้",
+      "เวียนศีรษะ"
+    ],
+    "warnings": [
+      "ห้ามใช้ร่วมกับ NSAIDs อื่น",
+      "ระวังเลือดออกในทางเดินอาหาร"
+    ],
+    "interactions": [
+      "Ibuprofen",
+      "Naproxen",
+      "Mefenamic Acid",
+      "Warfarin",
+      "Aspirin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/meloxicam.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_074",
+    "name": "Orphenadrine",
+    "genericName": "Orphenadrine",
+    "brandName": "Norflex",
+    "strength": "100 mg",
+    "dosageForm": "Tablet",
+    "category": "Analgesic",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยาคลายกล้ามเนื้อ (ง่วงซึม)",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 2 ครั้ง เช้า-เย็น",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "บรรเทาอาการปวดเกร็งกล้ามเนื้อเฉียบพลัน",
+      "กล้ามเนื้ออักเสบ คอเคล็ด ปวดหลัง"
+    ],
+    "sideEffects": [
+      "ง่วงซึม",
+      "ปากแห้ง คอแห้ง",
+      "ตาพร่า",
+      "ใจสั่น"
+    ],
+    "warnings": [
+      "ห้ามใช้ร่วมกับยาแก้แพ้ชนิดง่วง (CPM) หรือยานอนหลับ เพราะจะเสริมฤทธิ์กดประสาทและง่วงซึมรุนแรง",
+      "ห้ามขับรถหลังทานยา"
+    ],
+    "interactions": [
+      "Chlorpheniramine",
+      "Hydroxyzine",
+      "Alprazolam",
+      "Diazepam",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/orphenadrine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_075",
+    "name": "Tolperisone",
+    "genericName": "Tolperisone",
+    "brandName": "Mydocalm",
+    "strength": "50 mg",
+    "dosageForm": "Tablet",
+    "category": "Analgesic",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยาคลายกล้ามเนื้อ",
+    "dosageInstruction": "รับประทานครั้งละ 1-3 เม็ด วันละ 3 ครั้ง หลังอาหาร",
+    "appearance": "เม็ดกลมเคลือบน้ำตาลสีขาว",
+    "indications": [
+      "คลายกล้ามเนื้อหดเกร็ง",
+      "ปวดตึงคอบ่าไหล่",
+      "กล้ามเนื้อเกร็งจากโรคทางระบบประสาท"
+    ],
+    "sideEffects": [
+      "อ่อนแรง",
+      "เวียนศีรษะ",
+      "ผื่นแพ้ยา (พบได้น้อย)"
+    ],
+    "warnings": [
+      "ง่วงน้อยกว่า Orphenadrine แต่ยังควรระวังเมื่อขับขี่ในช่วงแรก"
+    ],
+    "interactions": [
+      "Diazepam",
+      "Alprazolam"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/tolperisone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_076",
+    "name": "Codeine",
+    "genericName": "Codeine",
+    "brandName": "Codeine Phosphate",
+    "strength": "30 mg",
+    "dosageForm": "Tablet",
+    "category": "Analgesic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาแก้ปวดกลุ่มโอปิออยด์",
+    "dosageInstruction": "รับประทานตามแพทย์สั่งอย่างเคร่งครัด ทุก 4-6 ชั่วโมง",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "บรรเทาอาการปวดระดับปานกลาง",
+      "ระงับอาการไอแห้งรุนแรง"
+    ],
+    "sideEffects": [
+      "ง่วงซึม",
+      "ท้องผูก",
+      "คลื่นไส้ อาเจียน",
+      "กดการหายใจหากใช้เกินขนาด"
+    ],
+    "warnings": [
+      "เสพติดได้หากใช้ต่อเนื่อง",
+      "ห้ามใช้ร่วมกับยานอนหลับหรือแอลกอฮอล์"
+    ],
+    "interactions": [
+      "Alprazolam",
+      "Diazepam",
+      "Chlorpheniramine",
+      "Orphenadrine",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/codeine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_077",
+    "name": "Morphine",
+    "genericName": "Morphine",
+    "brandName": "MST Continus",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Analgesic",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาเสพติดให้โทษประเภท 2",
+    "dosageInstruction": "รับประทานตามแพทย์สั่งอย่างเคร่งครัด ห้ามบดหรือเคี้ยวเม็ดยาชนิดออกฤทธิ์เนิ่น",
+    "appearance": "เม็ดเคลือบฟิล์มสีทองหรือน้ำตาลอ่อน",
+    "indications": [
+      "บรรเทาอาการปวดรุนแรงเฉียบพลันและเรื้อรัง",
+      "อาการปวดในผู้ป่วยมะเร็ง"
+    ],
+    "sideEffects": [
+      "กดการหายใจ",
+      "ง่วงซึมรุนแรง",
+      "ท้องผูกมาก",
+      "ความดันโลหิตต่ำ"
+    ],
+    "warnings": [
+      "ยาเสพติดให้โทษประเภท 2 ใช้ภายใต้การดูแลของแพทย์เท่านั้น",
+      "มียาต้านพิษคือ Naloxone"
+    ],
+    "interactions": [
+      "Alprazolam",
+      "Diazepam",
+      "Chlorpheniramine",
+      "Gabapentin",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/morphine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_078",
+    "name": "Loratadine",
+    "genericName": "Loratadine",
+    "brandName": "Clarityne",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Antihistamine",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาแก้แพ้ชนิดไม่ง่วง",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง",
+    "appearance": "เม็ดรีสีขาว",
+    "indications": [
+      "โรคจมูกอักเสบจากภูมิแพ้",
+      "จาม คันจมูก น้ำมูกไหล",
+      "ลมพิษเรื้อรัง"
+    ],
+    "sideEffects": [
+      "ปวดศีรษะ",
+      "ปากแห้งเล็กน้อย",
+      "อ่อนเพลีย"
+    ],
+    "warnings": [
+      "เป็นยาแก้แพ้ชนิดไม่ง่วง แต่อาจทำให้ง่วงเล็กน้อยในบางราย"
+    ],
+    "interactions": [
+      "Fluconazole",
+      "Amiodarone"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/loratadine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_079",
+    "name": "Fexofenadine",
+    "genericName": "Fexofenadine",
+    "brandName": "Telfast",
+    "strength": "60 mg",
+    "dosageForm": "Tablet",
+    "category": "Antihistamine",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาแก้แพ้ชนิดไม่ง่วง",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 2 ครั้ง เช้า-เย็น ดื่มน้ำเปล่าตาม",
+    "appearance": "เม็ดยาวรีสีชมพูพีช",
+    "indications": [
+      "ภูมิแพ้อากาศตามฤดูกาล",
+      "ผื่นลมพิษเรื้อรัง"
+    ],
+    "sideEffects": [
+      "ปวดศีรษะ",
+      "คลื่นไส้เล็กน้อย"
+    ],
+    "warnings": [
+      "ห้ามทานพร้อมน้ำผลไม้ (น้ำส้ม น้ำแอปเปิล) เพราะลดการดูดซึมยา"
+    ],
+    "interactions": [
+      "Erythromycin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/fexofenadine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_080",
+    "name": "Hydroxyzine",
+    "genericName": "Hydroxyzine",
+    "brandName": "Atarax",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Antihistamine",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ระวังง่วงซึม",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 3 ครั้ง หรือก่อนนอน",
+    "appearance": "เม็ดเคลือบน้ำตาลสีขาว",
+    "indications": [
+      "บรรเทาอาการคันจากภูมิแพ้ ผื่นผิวหนังอักเสบ ลมพิษ",
+      "ลดอาการวิตกกังวลและช่วยให้นอนหลับ"
+    ],
+    "sideEffects": [
+      "ง่วงซึมมาก",
+      "ปากแห้ง",
+      "เวียนศีรษะ"
+    ],
+    "warnings": [
+      "ห้ามขับขี่ยานพาหนะหลังทานยา",
+      "หลีกเลี่ยงการใช้ร่วมกับยาคลายกล้ามเนื้อและยานอนหลับ"
+    ],
+    "interactions": [
+      "Orphenadrine",
+      "Alprazolam",
+      "Diazepam",
+      "Amiodarone"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/hydroxyzine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_081",
+    "name": "Dextromethorphan",
+    "genericName": "Dextromethorphan",
+    "brandName": "Romed / Dextro",
+    "strength": "15 mg",
+    "dosageForm": "Tablet",
+    "category": "Respiratory",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาแก้ไอแห้ง",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด ทุก 6-8 ชั่วโมง เมื่อมีอาการไอแห้ง",
+    "appearance": "เม็ดกลมสีขาวหรือเหลือง",
+    "indications": [
+      "บรรเทาอาการไอแห้งที่ไม่มีเสมหะ"
+    ],
+    "sideEffects": [
+      "เวียนศีรษะ",
+      "ง่วงซึมเล็กน้อย",
+      "คลื่นไส้"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ที่ไอมีเสมหะมาก",
+      "ห้ามใช้ร่วมกับยาต้านเศร้ากลุ่ม SSRI (Fluoxetine, Sertraline) เสี่ยงภาวะ Serotonin Syndrome"
+    ],
+    "interactions": [
+      "Fluoxetine",
+      "Sertraline",
+      "Escitalopram",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/dextromethorphan.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_082",
+    "name": "Acetylcysteine (NAC)",
+    "genericName": "Acetylcysteine",
+    "brandName": "Fluimucil / NAC Long",
+    "strength": "600 mg",
+    "dosageForm": "Effervescent Tablet",
+    "category": "Respiratory",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาละลายเสมหะ",
+    "dosageInstruction": "ละลายน้ำครึ่งแก้ว ดื่มวันละ 1 ครั้ง หลังอาหาร",
+    "appearance": "เม็ดฟู่สีขาว กลิ่นส้มหรือเลมอน",
+    "indications": [
+      "ละลายเสมหะเหนียวข้นในโรคหลอดลมอักเสบ",
+      "ยาต้านพิษจากการกิน Paracetamol เกินขนาด"
+    ],
+    "sideEffects": [
+      "คลื่นไส้",
+      "ระคายเคืองกระเพาะอาหาร",
+      "กลิ่นกำมะถันอ่อนๆ"
+    ],
+    "warnings": [
+      "ควรดื่มน้ำตามมากๆ เพื่อช่วยให้เสมหะเหลวและขับออกง่ายขึ้น"
+    ],
+    "interactions": [
+      "Nitroglycerin"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/acetylcysteine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_083",
+    "name": "Budesonide Inhaler",
+    "genericName": "Budesonide",
+    "brandName": "Pulmicort",
+    "strength": "200 mcg",
+    "dosageForm": "Inhaler",
+    "category": "Respiratory",
+    "prescriptionType": "Rx",
+    "specialTag": "บ้วนปากหลังพ่นยา",
+    "dosageInstruction": "สูดพ่นครั้งละ 1-2 กด วันละ 2 ครั้ง เช้า-เย็น เป็นประจำทุกวัน",
+    "appearance": "หลอดพ่นยาสูดเข้าทางปาก",
+    "indications": [
+      "ควบคุมและป้องกันอาการหอบหืดระยะยาว",
+      "ลดการอักเสบของหลอดลม"
+    ],
+    "sideEffects": [
+      "เชื้อราในช่องปาก (ฝ้าขาว)",
+      "เสียงแหบ",
+      "ระคายเคืองคอ"
+    ],
+    "warnings": [
+      "ต้องบ้วนปากด้วยน้ำสะอาดและบ้วนทิ้งทุกครั้งหลังพ่นยาเพื่อป้องกันเชื้อราในช่องปาก",
+      "ไม่ใช่ยาพ่นแก้หอบฉุกเฉิน"
+    ],
+    "interactions": [
+      "Fluconazole"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/budesonide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_084",
+    "name": "Domperidone",
+    "genericName": "Domperidone",
+    "brandName": "Motilium",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Gastrointestinal",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานก่อนอาหาร",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 3 ครั้ง ก่อนอาหาร 15-30 นาที",
+    "appearance": "เม็ดกลมสีขาว",
+    "indications": [
+      "บรรเทาอาการคลื่นไส้ อาเจียน",
+      "แน่นท้อง อาหารไม่ย่อย กรดไหลย้อน"
+    ],
+    "sideEffects": [
+      "ปากแห้ง",
+      "ปวดศีรษะ",
+      "หัวใจเต้นผิดจังหวะหากใช้ขนาดสูง"
+    ],
+    "warnings": [
+      "ไม่ควรใช้เกินวันละ 30 มก. (3 เม็ด)",
+      "ระวังในผู้ป่วยโรคหัวใจเต้นผิดจังหวะ"
+    ],
+    "interactions": [
+      "Azithromycin",
+      "Fluconazole",
+      "Amiodarone"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/domperidone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_085",
+    "name": "Metoclopramide",
+    "genericName": "Metoclopramide",
+    "brandName": "Plasil",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Gastrointestinal",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "แก้คลื่นไส้อาเจียน",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 3 ครั้ง ก่อนอาหาร 30 นาที",
+    "appearance": "เม็ดกลมสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "แก้อาการคลื่นไส้ อาเจียน",
+      "กระตุ้นการบีบตัวของกระเพาะอาหาร"
+    ],
+    "sideEffects": [
+      "ง่วงซึม",
+      "กระสับกระส่าย",
+      "กล้ามเนื้อคอบิดเกร็ง (EPS) หากใช้เกินขนาด"
+    ],
+    "warnings": [
+      "ไม่ควรใช้ติดต่อกันเกิน 5 วัน",
+      "ห้ามใช้ในผู้ป่วยลำไส้อุดตัน"
+    ],
+    "interactions": [
+      "Fluoxetine",
+      "Sertraline",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/metoclopramide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_086",
+    "name": "Loperamide",
+    "genericName": "Loperamide",
+    "brandName": "Imodium",
+    "strength": "2 mg",
+    "dosageForm": "Capsule",
+    "category": "Gastrointestinal",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยาแก้ท้องเสีย",
+    "dosageInstruction": "รับประทานครั้งแรก 2 แคปซูล จากนั้นครั้งละ 1 แคปซูล ทุกครั้งที่ถ่ายเหลว (ไม่เกิน 8 แคปซูล/วัน)",
+    "appearance": "แคปซูลสีเขียว-เทา",
+    "indications": [
+      "บรรเทาอาการท้องเสียเฉียบพลันชนิดไม่ติดเชื้อ"
+    ],
+    "sideEffects": [
+      "ท้องผูก",
+      "ปวดเกร็งท้อง",
+      "เวียนศีรษะ"
+    ],
+    "warnings": [
+      "ห้ามใช้หากมีไข้สูงหรือถ่ายเป็นมูกเลือด (ท้องเสียติดเชื้อ) เพราะจะทำให้เชื้อค้างในลำไส้"
+    ],
+    "interactions": [
+      "Azithromycin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/loperamide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_087",
+    "name": "Hyoscine Butylbromide",
+    "genericName": "Hyoscine Butylbromide",
+    "brandName": "Buscopan",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Gastrointestinal",
+    "prescriptionType": "OTC",
+    "specialTag": "แก้ปวดบิดท้อง",
+    "dosageInstruction": "รับประทานครั้งละ 1-2 เม็ด วันละ 3-4 ครั้ง เมื่อมีอาการปวดบิดท้อง",
+    "appearance": "เม็ดกลมเคลือบน้ำตาลสีขาว",
+    "indications": [
+      "บรรเทาอาการปวดเกร็งช่องท้อง ปวดบิดลำไส้",
+      "ปวดเกร็งประจำเดือน"
+    ],
+    "sideEffects": [
+      "ปากแห้ง",
+      "ใจสั่น",
+      "ตาพร่าชั่วคราว"
+    ],
+    "warnings": [
+      "ห้ามใช้ในผู้ป่วยต้อหินมุมปิด และต่อมลูกหมากโตปัสสาวะคั่ง"
+    ],
+    "interactions": [
+      "Amitriptyline",
+      "Chlorpheniramine"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/hyoscine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_088",
+    "name": "Simethicone",
+    "genericName": "Simethicone",
+    "brandName": "Air-X",
+    "strength": "80 mg",
+    "dosageForm": "Chewable Tablet",
+    "category": "Gastrointestinal",
+    "prescriptionType": "OTC",
+    "specialTag": "เคี้ยวก่อนกลืน",
+    "dosageInstruction": "เคี้ยวให้ละเอียดครั้งละ 1-2 เม็ด หลังอาหารและก่อนนอน",
+    "appearance": "เม็ดเคี้ยวสีขาวหรือส้ม กลิ่นมินต์/ส้ม",
+    "indications": [
+      "บรรเทาอาการท้องอืด ท้องเฟ้อ มีแก๊สในกระเพาะอาหาร"
+    ],
+    "sideEffects": [
+      "แทบไม่พบผลข้างเคียง เนื่องจากยาไม่ถูกดูดซึมเข้าสู่กระแสเลือด"
+    ],
+    "warnings": [
+      "ต้องเคี้ยวให้ละเอียดก่อนกลืนเพื่อให้ยาออกฤทธิ์ลดฟองแก๊สได้เต็มที่"
+    ],
+    "interactions": [],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/simethicone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_089",
+    "name": "Lactulose",
+    "genericName": "Lactulose",
+    "brandName": "Duphalac / Hepalac",
+    "strength": "66.7 g/100mL",
+    "dosageForm": "Syrup",
+    "category": "Gastrointestinal",
+    "prescriptionType": "OTC",
+    "specialTag": "ยาระบาย",
+    "dosageInstruction": "รับประทานครั้งละ 15-30 มล. วันละ 1 ครั้ง เช้าหรือก่อนนอน",
+    "appearance": "ยาน้ำเชื่อมใสไม่มีสีถึงเหลืองอ่อน รสหวาน",
+    "indications": [
+      "รักษาอาการท้องผูกเรื้อรัง",
+      "ลดระดับแอมโมเนียในผู้ป่วยโรคตับ"
+    ],
+    "sideEffects": [
+      "ท้องอืด มีลมในท้องช่วงแรก",
+      "ปวดมวนท้องเล็กน้อย"
+    ],
+    "warnings": [
+      "ควรดื่มน้ำตามมากๆ ระหว่างวัน",
+      "ปลอดภัยในหญิงตั้งครรภ์และผู้สูงอายุ"
+    ],
+    "interactions": [],
+    "pregnancyCategory": "B",
+    "imageUrl": "/images/lactulose.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_090",
+    "name": "Enalapril",
+    "genericName": "Enalapril",
+    "brandName": "Renitec",
+    "strength": "5 mg",
+    "dosageForm": "Tablet",
+    "category": "Cardiovascular",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ห้ามใช้ในคนท้อง",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1-2 ครั้ง เวลาเดียวกันทุกวัน",
+    "appearance": "เม็ดสามเหลี่ยมมนสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "รักษาโรคความดันโลหิตสูง",
+      "ภาวะหัวใจล้มเหลว",
+      "ชะลอไตเสื่อมในผู้ป่วยเบาหวาน"
+    ],
+    "sideEffects": [
+      "ไอแห้งเรื้อรัง",
+      "เวียนศีรษะเมื่อเปลี่ยนท่าทาง",
+      "โพแทสเซียมในเลือดสูง"
+    ],
+    "warnings": [
+      "ห้ามใช้ในหญิงตั้งครรภ์เด็ดขาด",
+      "หากมีอาการหน้าบวม ปากบวม ให้หยุดยาและพบแพทย์ทันที"
+    ],
+    "interactions": [
+      "Spironolactone",
+      "Ibuprofen",
+      "Naproxen",
+      "Mefenamic Acid",
+      "Pseudoephedrine",
+      "Losartan"
+    ],
+    "pregnancyCategory": "D",
+    "imageUrl": "/images/enalapril.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_091",
+    "name": "Nifedipine SR",
+    "genericName": "Nifedipine",
+    "brandName": "Adalat CR",
+    "strength": "30 mg",
+    "dosageForm": "Tablet",
+    "category": "Cardiovascular",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ห้ามบดหรือเคี้ยวเม็ดยา",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง กลืนทั้งเม็ด ห้ามหัก บด หรือเคี้ยว",
+    "appearance": "เม็ดกลมสีชมพู",
+    "indications": [
+      "รักษาความดันโลหิตสูง",
+      "ป้องกันอาการเจ็บหน้าอกจากกล้ามเนื้อหัวใจขาดเลือด"
+    ],
+    "sideEffects": [
+      "ข้อเท้าบวม",
+      "หน้าแดง ร้อนวูบวาบ",
+      "ปวดศีรษะ",
+      "ใจสั่น"
+    ],
+    "warnings": [
+      "ห้ามเคี้ยวหรือบดเม็ดยา เพราะจะทำให้ความดันตกวูบอย่างรวดเร็ว"
+    ],
+    "interactions": [
+      "Pseudoephedrine",
+      "Simvastatin",
+      "Carbamazepine"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/nifedipine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_092",
+    "name": "Simvastatin",
+    "genericName": "Simvastatin",
+    "brandName": "Zocor",
+    "strength": "20 mg",
+    "dosageForm": "Tablet",
+    "category": "Cardiovascular",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานก่อนนอน",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง ก่อนนอน",
+    "appearance": "เม็ดรีสีชมพูอ่อน",
+    "indications": [
+      "ลดระดับไขมันคอเลสเตอรอลและ LDL ในเลือด",
+      "ป้องกันโรคหลอดเลือดหัวใจและสมอง"
+    ],
+    "sideEffects": [
+      "ปวดเมื่อยกล้ามเนื้อ",
+      "ค่าเอนไซม์ตับสูงขึ้น",
+      "ท้องผูก"
+    ],
+    "warnings": [
+      "ควรทานก่อนนอนเพราะตับสร้างไขมันมากที่สุดช่วงกลางคืน",
+      "ห้ามใช้ร่วมกับยาฆ่าเชื้อเชื้อรา Fluconazole หรือ Macrolides บางชนิดเพราะเสี่ยงกล้ามเนื้อสลายรุนแรง"
+    ],
+    "interactions": [
+      "Fluconazole",
+      "Amlodipine",
+      "Amiodarone",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "X",
+    "imageUrl": "/images/simvastatin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_093",
+    "name": "Fenofibrate",
+    "genericName": "Fenofibrate",
+    "brandName": "Lipanthyl",
+    "strength": "160 mg",
+    "dosageForm": "Tablet",
+    "category": "Cardiovascular",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ลดไขมันไตรกลีเซอไรด์",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง พร้อมอาหาร",
+    "appearance": "เม็ดยาวรีสีขาว",
+    "indications": [
+      "ลดระดับไขมันไตรกลีเซอไรด์ในเลือดสูง"
+    ],
+    "sideEffects": [
+      "ปวดท้อง",
+      "คลื่นไส้",
+      "ปวดเมื่อยกล้ามเนื้อ"
+    ],
+    "warnings": [
+      "ระวังการใช้ร่วมกับยากลุ่ม Statin เพราะเพิ่มความเสี่ยงกล้ามเนื้ออักเสบ"
+    ],
+    "interactions": [
+      "Simvastatin",
+      "Atorvastatin",
+      "Rosuvastatin",
+      "Warfarin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/fenofibrate.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_094",
+    "name": "Glipizide",
+    "genericName": "Glipizide",
+    "brandName": "Minidiab",
+    "strength": "5 mg",
+    "dosageForm": "Tablet",
+    "category": "Antidiabetic",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ทานก่อนอาหาร 30 นาที",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด ก่อนอาหารเช้า 30 นาที",
+    "appearance": "เม็ดกลมสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "รักษาโรคเบาหวานชนิดที่ 2"
+    ],
+    "sideEffects": [
+      "ภาวะน้ำตาลในเลือดต่ำ (ใจสั่น เหงื่อแตก หน้ามืด)",
+      "น้ำหนักตัวเพิ่มขึ้น"
+    ],
+    "warnings": [
+      "ต้องทานก่อนอาหาร 30 นาที และห้ามอดอาหารหลังทานยาเพราะเสี่ยงน้ำตาลตก"
+    ],
+    "interactions": [
+      "Fluconazole",
+      "Aspirin",
+      "Warfarin",
+      "Metoprolol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/glipizide.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_095",
+    "name": "Empagliflozin",
+    "genericName": "Empagliflozin",
+    "brandName": "Jardiance",
+    "strength": "10 mg",
+    "dosageForm": "Tablet",
+    "category": "Antidiabetic",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ดื่มน้ำให้เพียงพอ",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 1 ครั้ง ตอนเช้า",
+    "appearance": "เม็ดกลมสีเหลืองอ่อน",
+    "indications": [
+      "รักษาโรคเบาหวานชนิดที่ 2",
+      "ลดความเสี่ยงการเสียชีวิตในผู้ป่วยหัวใจล้มเหลวและโรคไตเรื้อรัง"
+    ],
+    "sideEffects": [
+      "ปัสสาวะบ่อย",
+      "ติดเชื้อราบริเวณอวัยวะเพศและทางเดินปัสสาวะ",
+      "ภาวะขาดน้ำ"
+    ],
+    "warnings": [
+      "ควรดื่มน้ำสะอาดให้เพียงพอและรักษาความสะอาดจุดซ่อนเร้น"
+    ],
+    "interactions": [
+      "Furosemide",
+      "Hydrochlorothiazide"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/empagliflozin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_096",
+    "name": "Amiodarone",
+    "genericName": "Amiodarone",
+    "brandName": "Cordarone",
+    "strength": "200 mg",
+    "dosageForm": "Tablet",
+    "category": "Cardiovascular",
+    "prescriptionType": "Rx",
+    "specialTag": "ยาควบคุมจังหวะหัวใจ",
+    "dosageInstruction": "รับประทานตามแพทย์สั่งอย่างเคร่งครัด",
+    "appearance": "เม็ดกลมสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "รักษาภาวะหัวใจเต้นผิดจังหวะรุนแรง"
+    ],
+    "sideEffects": [
+      "ความผิดปกติของต่อมไทรอยด์",
+      "พังผืดที่ปอด",
+      "ผิวหนังไวต่อแสงแดด",
+      "หัวใจเต้นช้า"
+    ],
+    "warnings": [
+      "ยาตีกับยาอื่นสูงมาก ต้องแจ้งแพทย์ทุกครั้งก่อนเริ่มยาใหม่ทุกชนิด"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Digoxin",
+      "Simvastatin",
+      "Atorvastatin",
+      "Moxifloxacin",
+      "Hydroxyzine"
+    ],
+    "pregnancyCategory": "D",
+    "imageUrl": "/images/amiodarone.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_097",
+    "name": "Diazepam",
+    "genericName": "Diazepam",
+    "brandName": "Valium",
+    "strength": "5 mg",
+    "dosageForm": "Tablet",
+    "category": "Psychiatric",
+    "prescriptionType": "Rx",
+    "specialTag": "วัตถุออกฤทธิ์ฯ ห้ามหยุดยาเอง",
+    "dosageInstruction": "รับประทานตามแพทย์สั่ง ก่อนนอนหรือเมื่อมีอาการวิตกกังวล",
+    "appearance": "เม็ดกลมสีเหลืองอ่อน",
+    "indications": [
+      "ลดอาการวิตกกังวลและช่วยให้นอนหลับ",
+      "คลายกล้ามเนื้อหดเกร็ง",
+      "ระงับอาการชัก"
+    ],
+    "sideEffects": [
+      "ง่วงซึมมาก",
+      "กล้ามเนื้ออ่อนแรง",
+      "เวียนศีรษะ",
+      "ความจำสั้นชั่วคราว"
+    ],
+    "warnings": [
+      "วัตถุออกฤทธิ์ต่อจิตและประสาท ห้ามหยุดยากะทันหัน",
+      "ห้ามใช้ร่วมกับยาแก้แพ้ง่วง ยาคลายกล้ามเนื้อ และแอลกอฮอล์"
+    ],
+    "interactions": [
+      "Chlorpheniramine",
+      "Hydroxyzine",
+      "Orphenadrine",
+      "Tramadol",
+      "Codeine",
+      "Morphine"
+    ],
+    "pregnancyCategory": "D",
+    "imageUrl": "/images/diazepam.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_098",
+    "name": "Pregabalin",
+    "genericName": "Pregabalin",
+    "brandName": "Lyrica",
+    "strength": "75 mg",
+    "dosageForm": "Capsule",
+    "category": "Psychiatric",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "รักษาปวดเส้นประสาท",
+    "dosageInstruction": "รับประทานครั้งละ 1 แคปซูล วันละ 2 ครั้ง เช้า-เย็น",
+    "appearance": "แคปซูลสีแดง-ขาว",
+    "indications": [
+      "รักษาอาการปวดเส้นประสาทจากเบาหวานหรืองูสวัด",
+      "โรคลมชักและโรควิตกกังวลทั่วไป"
+    ],
+    "sideEffects": [
+      "เวียนศีรษะ",
+      "ง่วงซึม",
+      "บวมตามมือและเท้า",
+      "น้ำหนักขึ้น"
+    ],
+    "warnings": [
+      "ระวังการขับขี่ยานพาหนะ",
+      "ห้ามหยุดยากะทันหัน"
+    ],
+    "interactions": [
+      "Alprazolam",
+      "Diazepam",
+      "Morphine",
+      "Tramadol"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/pregabalin.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_099",
+    "name": "Carbamazepine",
+    "genericName": "Carbamazepine",
+    "brandName": "Tegretol",
+    "strength": "200 mg",
+    "dosageForm": "Tablet",
+    "category": "Psychiatric",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "ยากันชัก",
+    "dosageInstruction": "รับประทานครั้งละ 1 เม็ด วันละ 2 ครั้ง พร้อมอาหาร",
+    "appearance": "เม็ดกลมสีขาว มีขีดแบ่งครึ่ง",
+    "indications": [
+      "ควบคุมอาการชักในโรคลมชัก",
+      "รักษาอาการปวดเส้นประสาทใบหน้า (Trigeminal Neuralgia)"
+    ],
+    "sideEffects": [
+      "ง่วงซึม เวียนศีรษะ",
+      "คลื่นไส้",
+      "ผื่นแพ้ยารุนแรง (SJS/TEN) โดยเฉพาะในคนเอเชีย"
+    ],
+    "warnings": [
+      "ควรตรวจยีน HLA-B*1502 ก่อนเริ่มยาในคนไทยเพื่อป้องกันผื่นแพ้ยารุนแรง",
+      "เร่งเอนไซม์ตับทำให้ระดับยาอื่นลดลงมาก"
+    ],
+    "interactions": [
+      "Warfarin",
+      "Amlodipine",
+      "Nifedipine",
+      "Doxycycline",
+      "Alprazolam",
+      "Paracetamol"
+    ],
+    "pregnancyCategory": "D",
+    "imageUrl": "/images/carbamazepine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
+  },
+  {
+    "id": "med_100",
+    "name": "Colchicine",
+    "genericName": "Colchicine",
+    "brandName": "Colchicine",
+    "strength": "0.6 mg",
+    "dosageForm": "Tablet",
+    "category": "Antigout",
+    "prescriptionType": "Dangerous Drug",
+    "specialTag": "รักษาโรคเกาต์เฉียบพลัน",
+    "dosageInstruction": "เมื่อปวดเกาต์เฉียบพลัน ทาน 2 เม็ดทันที ตามด้วย 1 เม็ดในอีก 1 ชั่วโมงถัดมา (ไม่เกิน 3 เม็ดในวันแรก)",
+    "appearance": "เม็ดกลมเล็กสีขาวหรือเหลืองอ่อน",
+    "indications": [
+      "รักษาและป้องกันอาการปวดข้ออักเสบจากโรคเกาต์เฉียบพลัน"
+    ],
+    "sideEffects": [
+      "ท้องเสียรุนแรง",
+      "คลื่นไส้ อาเจียน",
+      "ปวดบิดท้อง"
+    ],
+    "warnings": [
+      "หากเริ่มมีอาการถ่ายเหลวหรือคลื่นไส้ให้หยุดยาทันที เพราะเป็นสัญญาณเตือนพิษจากยา",
+      "ห้ามใช้เกินขนาดที่กำหนด"
+    ],
+    "interactions": [
+      "Azithromycin",
+      "Fluconazole",
+      "Simvastatin",
+      "Atorvastatin"
+    ],
+    "pregnancyCategory": "C",
+    "imageUrl": "/images/colchicine.png",
+    "createdAt": "2026-11-26 00:36:00.000"
   }
 ]

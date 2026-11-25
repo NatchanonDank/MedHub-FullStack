@@ -35,9 +35,8 @@ export const MedDetailPage: React.FC = () => {
   const inKit = isInKit(String(medication.id));
   const medImage = medication.imageUrl || '/icon.png';
 
-  // ใช้ max-w-7xl ให้เท่ากับหน้าแรก เพื่อป้องกันปัญหากรอบดุ๊กดิ๊กเวลาเปลี่ยนหน้า
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-4 my-4 text-left">
+    <div className="w-full mx-auto px-6 sm:px-8 py-6 space-y-6">
       {/* ลิงก์ย้อนกลับมุมขวาบน */}
       <div className="text-right">
         <Link to="/" className="text-sm text-base-content/70 hover:text-primary no-underline hover:underline">
@@ -160,7 +159,7 @@ export const MedDetailPage: React.FC = () => {
               </div>
             )}
 
-            {/* ข้อบ่งใช้ และ ผลข้างเคียง (สองคอลัมน์) */}
+            {/* ข้อบ่งใช้ และ ผลข้างเคียง */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">        
               <div className="bg-info/5 border border-info/20 p-5 rounded-xl flex flex-col">
                 <h3 className="font-bold text-lg text-info flex items-center gap-2 mb-3">
