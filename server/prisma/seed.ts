@@ -110,6 +110,50 @@ async function main() {
   }
   console.log(`Seeded ${medications.length} medications successfully.`);
 
+  const rulesJsonPath = path.resolve(__dirname, './data/interaction_rules.json');
+  if (fs.existsSync(rulesJsonPath)) {
+    const rawData = JSON.parse(fs.readFileSync(rulesJsonPath, 'utf-8'));
+    const rulesList = Array.isArray(rawData) ? rawData : rawData.rules || rawData.data || [];
+
+    let seededRuleCount = 0;
+    for (const item of rulesList) {
+      const ruleName = item.ruleName || item.rule_name || item.name;
+      const drugAGroup = item.drugAGroup || item.drug_a_group || item.drugA;
+      const drugBGroup = item.drugBGroup || item.drug_b_group || item.drugB;
+      const excludeA = item.excludeA || item.exclude_a || [];
+      const excludeB = item.excludeB || item.exclude_b || [];
+      const severity = item.severity;
+      const message = item.message;
+
+      if (!ruleName || !Array.isArray(drugAGroup) || !Array.isArray(drugBGroup) || !severity || !message) {
+        continue;
+      }
+
+      await prisma.drugInteractionRule.upsert({
+        where: { ruleName: String(ruleName).trim() },
+        update: {
+          drugAGroup,
+          drugBGroup,
+          excludeA: Array.isArray(excludeA) ? excludeA : [],
+          excludeB: Array.isArray(excludeB) ? excludeB : [],
+          severity: String(severity).toUpperCase().trim(),
+          message: String(message).trim(),
+        },
+        create: {
+          ruleName: String(ruleName).trim(),
+          drugAGroup,
+          drugBGroup,
+          excludeA: Array.isArray(excludeA) ? excludeA : [],
+          excludeB: Array.isArray(excludeB) ? excludeB : [],
+          severity: String(severity).toUpperCase().trim(),
+          message: String(message).trim(),
+        },
+      });
+      seededRuleCount++;
+    }
+    console.log(`Seeded ${seededRuleCount} drug interaction rules successfully.`);
+  }
+
   const existingReports = await prisma.symptomReport.count();
   if (existingReports === 0) {
     await prisma.symptomReport.createMany({
