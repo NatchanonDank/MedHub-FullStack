@@ -68,3 +68,15 @@ model SymptomReport {
   user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   medication   Medication @relation(fields: [medicationId], references: [id], onDelete: Cascade)
 }
+
+model DrugInteractionRule {
+  id         Int      @id @default(autoincrement())
+  ruleName   String   @unique
+  drugAGroup String[]
+  drugBGroup String[]
+  excludeA   String[] @default([])
+  excludeB   String[] @default([])
+  severity   String  
+  message    String
+  createdAt  DateTime @default(now())
+}
