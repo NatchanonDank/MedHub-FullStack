@@ -157,7 +157,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
   const isSubmitting = createMutation.isPending || updateMutation.isPending;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
+    <div className="mx-auto px-4 py-8 space-y-8">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-primary/15 via-base-200 to-secondary/15 p-6 md:p-8 rounded-2xl border border-base-300 text-left">
         <div className="badge badge-primary badge-outline px-3 py-2.5 mb-2 font-semibold">

@@ -48,22 +48,29 @@ export const MyKitPage = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-primary flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="w-full mx-auto px-6 sm:px-8 py-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+        <div className="flex items-center gap-4 min-w-0">
+          <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
-            กระเป๋ายาของ {user.name}
-          </h1>
-          <p className="text-base-content/70 mt-2">
-            รายการยาที่บันทึกไว้ในฐานข้อมูล ({kitItems.length} รายการ)
-          </p>
+          </div>
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-4xl font-bold text-primary truncate">
+              กระเป๋ายาของ {user.name}
+            </h1>
+            <p className="text-sm sm:text-base text-base-content/70 mt-1">
+              รายการยาที่บันทึกไว้ในฐานข้อมูล ({kitItems.length} รายการ)
+            </p>
+          </div>
         </div>
 
         {kitItems.length > 0 && (
-          <button onClick={clearKit} className="btn btn-outline btn-error btn-sm">
+          <button
+            onClick={clearKit}
+            className="btn btn-outline btn-error btn-sm shrink-0 self-start sm:self-auto px-4"
+          >
             ล้างกระเป๋ายาทั้งหมด
           </button>
         )}

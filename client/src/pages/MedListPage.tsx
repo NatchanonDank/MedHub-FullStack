@@ -70,8 +70,8 @@ export const MedListPage: React.FC = () => {
     );
   }
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-6">
-      {/* ช่องค้นหา, เลือกหมวดหมู่, เรียงลำดับ A-Z/Z-A) */}
+    <div className="w-full mx-auto px-6 sm:px-8 py-6 space-y-6">
+      {/* ช่องค้นหา, เลือกหมวดหมู่, เรียงลำดับ A-Z/Z-A */}
       <div className="flex flex-col md:flex-row gap-4 mb-8 bg-base-100 p-4 rounded-xl shadow-sm border border-base-200">
         <div className="form-control flex-1">
           <input 

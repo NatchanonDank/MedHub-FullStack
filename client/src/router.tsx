@@ -52,10 +52,12 @@ function RootLayout() {
             <NavLink to="/interactions" className={navLinkClass}>
               เช็กยาตีกัน
             </NavLink>
-            <NavLink to="/my-kit" className={navLinkClass}>
-              กระเป๋ายา
+            <NavLink to="/my-kit" className={({ isActive }) => `${navLinkClass({ isActive })} inline-flex items-center gap-2`}>
+              <span>กระเป๋ายา</span>
               {user && kitItems.length > 0 && (
-                <span className="badge badge-secondary badge-xs ml-1.5">{kitItems.length}</span>
+                <span className="badge badge-secondary badge-sm px-1.5 py-0.5 font-semibold leading-none">
+                  {kitItems.length}
+                </span>
               )}
             </NavLink>
             <NavLink to="/reports" className={navLinkClass}>
@@ -160,7 +162,7 @@ function RootLayout() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-6">
         <Outlet />
       </main>
 
