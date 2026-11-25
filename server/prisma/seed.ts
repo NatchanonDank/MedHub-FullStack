@@ -32,7 +32,6 @@ interface SeedMedication {
 async function main() {
   console.log('Starting Final Project database seed...');
 
-  // สร้างบัญชี Admin และ User ตัวอย่าง
   const adminUser = await prisma.user.upsert({
     where: { email: 'admin@medhub.com' },
     update: { role: 'ADMIN' },
@@ -57,7 +56,6 @@ async function main() {
 
   console.log(`Seeded users: ${adminUser.email} (ADMIN) & ${demoUser.email} (USER)`);
 
-  // Seed ข้อมูลยารวม 100 รายการจาก medications.json (49) + medications_extra.json (51)
   const jsonPath = path.resolve(__dirname, './data/medications.json');
   const extraJsonPath = path.resolve(__dirname, './data/medications_extra.json');
 
@@ -112,14 +110,13 @@ async function main() {
   }
   console.log(`Seeded ${medications.length} medications successfully.`);
 
-  // Seed รายงานอาการไม่พึงประสงค์ตัวอย่างในชุมชน
   const existingReports = await prisma.symptomReport.count();
   if (existingReports === 0) {
     await prisma.symptomReport.createMany({
       data: [
         {
           userId: demoUser.id,
-          medicationId: 'med_027', // Ibuprofen
+          medicationId: 'med_027',
           symptom: 'แสบท้องและคลื่นไส้หลังรับประทาน',
           severity: 'MODERATE',
           description: 'ทานยาหลังอาหารเช้าประมาณ 30 นาที มีอาการปวดแสบลิ้นปี่',
@@ -128,7 +125,7 @@ async function main() {
         },
         {
           userId: demoUser.id,
-          medicationId: 'med_013', // Cetirizine
+          medicationId: 'med_013',
           symptom: 'ง่วงซึมและปากแห้งเล็กน้อย',
           severity: 'MILD',
           description: 'ทานแก้แพ้อากาศช่วงเช้าแล้วมีอาการง่วงระหว่างทำงาน',
