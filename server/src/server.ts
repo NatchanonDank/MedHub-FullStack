@@ -258,7 +258,57 @@ app.delete('/api/medications/:id', async (req: Request, res: Response, next: Nex
   }
 });
 
-// Drug Interaction Checker (เจาะลึกกลไกทางเภสัชวิทยา + ดึงรายละเอียดจริงจากฐานข้อมูล)
+// Drug Interaction Rules CRUD (ดึงและจัดการกฎปฏิกิริยาระหว่างยาจาก Supabase)
+app.get('/api/interaction-rules', async (_req: Request, res: Response, next: NextFunction) => {
+  try {
+    const rules = await prisma.drugInteractionRule.findMany({
+      orderBy: [{ severity: 'asc' }, { id: 'asc' }],
+    });
+    res.json(rules);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/interaction-rules', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { ruleName, drugAGroup, drugBGroup, excludeA, excludeB, severity, message } = req.body;
+    if (!ruleName || !Array.isArray(drugAGroup) || !Array.isArray(drugBGroup) || !severity || !message) {
+      res.status(400).json({ message: 'กรุณากรอกข้อมูลกฎปฏิกิริยาระหว่างยาให้ครบถ้วน' });
+      return;
+    }
+
+    const created = await prisma.drugInteractionRule.create({
+      data: {
+        ruleName: String(ruleName).trim(),
+        drugAGroup,
+        drugBGroup,
+        excludeA: Array.isArray(excludeA) ? excludeA : [],
+        excludeB: Array.isArray(excludeB) ? excludeB : [],
+        severity: String(severity).toUpperCase(),
+        message: String(message).trim(),
+      },
+    });
+
+    res.status(201).json(created);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/interaction-rules/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = Number(req.params.id);
+    await prisma.drugInteractionRule.delete({ where: { id } });
+    res.json({ message: 'ลบกฎปฏิกิริยาระหว่างยาเรียบร้อยแล้ว', id });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// Drug Interaction Checker (ประมวลผลจากตาราง DrugInteractionRule ใน Supabase)
+
 app.post('/api/interactions/check', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { med1Id, med2Id } = req.body;
@@ -274,9 +324,12 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
       return;
     }
 
-    const [med1, med2] = await Promise.all([
+    const [med1, med2, rules] = await Promise.all([
       prisma.medication.findUnique({ where: { id: String(med1Id) } }),
       prisma.medication.findUnique({ where: { id: String(med2Id) } }),
+      prisma.drugInteractionRule.findMany({
+        orderBy: [{ severity: 'asc' }, { id: 'asc' }], // เรียง "DANGER" ขึ้นก่อน "WARNING" เสมอ
+      }),
     ]);
 
     if (!med1 || !med2) {
@@ -286,468 +339,46 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
 
     type MedRecord = NonNullable<typeof med1>;
 
-    const matchName = (med: MedRecord, ...names: string[]) =>
-      names.some((n) => {
-        const keyword = n.toLowerCase();
-        return (
-          med.name.toLowerCase().includes(keyword) ||
-          (med.genericName?.toLowerCase().includes(keyword) ?? false) ||
-          (med.brandName?.toLowerCase().includes(keyword) ?? false)
-        );
+    // ฟังก์ชันตรวจสอบว่ายาตรงกับกลุ่มคำค้นหา (ชื่อยา / ชื่อสามัญ / ชื่อการค้า / หมวดหมู่) และไม่อยู่ในข้อยกเว้น
+    const matchesGroup = (med: MedRecord, groupTerms: string[], excludeTerms: string[]) => {
+      const searchableFields = [med.name, med.genericName, med.brandName, med.category]
+        .filter((val): val is string => Boolean(val && val.trim().length > 0))
+        .map((val) => val.toLowerCase().trim());
+
+      const isExcluded = excludeTerms.some((ex) => {
+        const kw = ex.toLowerCase().trim();
+        return kw.length > 0 && searchableFields.some((field) => field.includes(kw));
       });
 
-    const matchCategory = (med: MedRecord, ...categories: string[]) =>
-      categories.some((c) => med.category?.toLowerCase() === c.toLowerCase());
+      if (isExcluded) return false;
 
-    // =========================================================================
-    // แยกกลุ่มกลไกของยาให้ละเอียด (แยก Anticoagulant ออกจาก Antiplatelet ชัดเจน)
-    // =========================================================================
-
-    const isAnticoagulant = (med: MedRecord) =>
-      matchCategory(med, 'Anticoagulant') ||
-      matchName(
-        med,
-        'Warfarin',
-        'Apixaban',
-        'Rivaroxaban',
-        'Dabigatran',
-        'Edoxaban',
-        'Enoxaparin',
-        'Heparin',
-        'Fondaparinux'
-      );
-
-    const isAntiplatelet = (med: MedRecord) =>
-      matchCategory(med, 'Antiplatelet') ||
-      matchName(med, 'Clopidogrel', 'Ticagrelor', 'Prasugrel', 'Aspirin', 'Cilostazol', 'Dipyridamole');
-
-    const isBloodThinner = (med: MedRecord) => isAnticoagulant(med) || isAntiplatelet(med);
-
-    const isNSAID = (med: MedRecord) =>
-      (matchCategory(med, 'NSAID') ||
-        matchName(
-          med,
-          'Ibuprofen',
-          'Diclofenac',
-          'Naproxen',
-          'Celecoxib',
-          'Etoricoxib',
-          'Meloxicam',
-          'Mefenamic',
-          'Indomethacin',
-          'Piroxicam',
-          'Ketorolac'
-        )) &&
-      !matchName(med, 'Aspirin');
-
-    const isCorticosteroid = (med: MedRecord) =>
-      matchName(
-        med,
-        'Prednisolone',
-        'Prednisone',
-        'Dexamethasone',
-        'Methylprednisolone',
-        'Hydrocortisone',
-        'Betamethasone'
-      );
-
-    const isWarfarin = (med: MedRecord) => matchName(med, 'Warfarin');
-
-    const isSSRIorSNRI = (med: MedRecord) =>
-      matchName(
-        med,
-        'Sertraline',
-        'Escitalopram',
-        'Citalopram',
-        'Fluoxetine',
-        'Paroxetine',
-        'Fluvoxamine',
-        'Venlafaxine',
-        'Duloxetine',
-        'Amitriptyline'
-      );
-
-    const isSerotonergic = (med: MedRecord) =>
-      matchName(med, 'Tramadol', 'Dextromethorphan', 'Linezolid', 'Sumatriptan');
-
-    const isStatin = (med: MedRecord) =>
-      matchName(med, 'Atorvastatin', 'Rosuvastatin', 'Simvastatin', 'Pravastatin', 'Pitavastatin');
-
-    const isStrongCYP3A4Inhibitor = (med: MedRecord) =>
-      matchName(
-        med,
-        'Fluconazole',
-        'Itraconazole',
-        'Ketoconazole',
-        'Voriconazole',
-        'Clarithromycin',
-        'Erythromycin',
-        'Ritonavir'
-      );
-
-    const isWarfarinBooster = (med: MedRecord) =>
-      matchName(
-        med,
-        'Fluconazole',
-        'Metronidazole',
-        'Sulfamethoxazole',
-        'Trimethoprim',
-        'Co-trimoxazole',
-        'Ciprofloxacin',
-        'Clarithromycin',
-        'Amiodarone'
-      );
-
-    const isNitrate = (med: MedRecord) =>
-      matchName(med, 'Isosorbide', 'Nitroglycerin', 'Glyceryl trinitrate');
-
-    const isPDE5Inhibitor = (med: MedRecord) =>
-      matchName(med, 'Sildenafil', 'Tadalafil', 'Vardenafil');
-
-    const isAceArb = (med: MedRecord) =>
-      matchName(
-        med,
-        'Lisinopril',
-        'Enalapril',
-        'Ramipril',
-        'Perindopril',
-        'Captopril',
-        'Valsartan',
-        'Losartan',
-        'Irbesartan',
-        'Telmisartan',
-        'Candesartan'
-      );
-
-    const isPotassiumSparingOrSupplement = (med: MedRecord) =>
-      matchName(med, 'Spironolactone', 'Eplerenone', 'Amiloride', 'Potassium');
-
-    const isPotassiumDepletingDiuretic = (med: MedRecord) =>
-      matchName(med, 'Furosemide', 'Hydrochlorothiazide', 'Indapamide', 'Chlorthalidone', 'Torsemide');
-
-    const isDigoxin = (med: MedRecord) => matchName(med, 'Digoxin');
-    const isLithium = (med: MedRecord) => matchName(med, 'Lithium');
-    const isMethotrexate = (med: MedRecord) => matchName(med, 'Methotrexate');
-    const isParacetamol = (med: MedRecord) => matchName(med, 'Paracetamol', 'Acetaminophen');
-
-    const isEnzymeInducer = (med: MedRecord) =>
-      matchName(med, 'Carbamazepine', 'Phenytoin', 'Phenobarbital', 'Rifampicin', 'Rifampin');
-
-    const isOralContraceptive = (med: MedRecord) =>
-      matchName(med, 'Ethinylestradiol', 'Levonorgestrel', 'Desogestrel', 'Drospirenone', 'Norethisterone');
-
-    const isPPI = (med: MedRecord) =>
-      matchName(med, 'Omeprazole', 'Esomeprazole', 'Lansoprazole', 'Pantoprazole', 'Rabeprazole');
-
-    const isClopidogrel = (med: MedRecord) => matchName(med, 'Clopidogrel');
-
-    const isChelatedAntibiotic = (med: MedRecord) =>
-      matchName(
-        med,
-        'Ciprofloxacin',
-        'Levofloxacin',
-        'Ofloxacin',
-        'Moxifloxacin',
-        'Norfloxacin',
-        'Doxycycline',
-        'Tetracycline',
-        'Minocycline'
-      );
-
-    const isDivalentCationOrAntacid = (med: MedRecord) =>
-      matchName(
-        med,
-        'Calcium',
-        'Ferrous',
-        'Iron',
-        'Magnesium',
-        'Aluminium',
-        'Aluminum',
-        'Antacid',
-        'Zinc',
-        'Sucralfate'
-      );
-
-    const isOpioid = (med: MedRecord) =>
-      matchName(med, 'Tramadol', 'Morphine', 'Codeine', 'Fentanyl', 'Oxycodone');
-
-    const isBenzo = (med: MedRecord) =>
-      matchName(med, 'Alprazolam', 'Diazepam', 'Lorazepam', 'Clonazepam', 'Midazolam');
-
-    const isCNSDepressant = (med: MedRecord) =>
-      isOpioid(med) ||
-      isBenzo(med) ||
-      matchName(
-        med,
-        'Amitriptyline',
-        'Gabapentin',
-        'Pregabalin',
-        'Zolpidem',
-        'Chlorpheniramine',
-        'Hydroxyzine',
-        'Dimenhydrinate'
-      );
-
-    const isQTProlonging = (med: MedRecord) =>
-      matchName(
-        med,
-        'Amiodarone',
-        'Azithromycin',
-        'Clarithromycin',
-        'Ciprofloxacin',
-        'Levofloxacin',
-        'Domperidone',
-        'Ondansetron',
-        'Haloperidol',
-        'Quetiapine',
-        'Escitalopram'
-      );
-
-    const isBetaBlocker = (med: MedRecord) =>
-      matchName(med, 'Propranolol', 'Metoprolol', 'Atenolol', 'Bisoprolol', 'Carvedilol', 'Nebivolol');
-
-    const isAntidiabetic = (med: MedRecord) =>
-      matchCategory(med, 'Antidiabetic') ||
-      matchName(
-        med,
-        'Insulin',
-        'Metformin',
-        'Glipizide',
-        'Glibenclamide',
-        'Gliclazide',
-        'Glimepiride',
-        'Pioglitazone',
-        'Sitagliptin',
-        'Empagliflozin',
-        'Dapagliflozin'
-      );
-
-    const matchPair = (
-      checkA: (m: MedRecord) => boolean,
-      checkB: (m: MedRecord) => boolean
-    ) => (checkA(med1) && checkB(med2)) || (checkA(med2) && checkB(med1));
-
-    // =========================================================================
-    // ระดับที่ 1: DANGER (ห้ามทานร่วมกัน / อันตรายรุนแรง)
-    // =========================================================================
-
-    if (matchPair(isNitrate, isPDE5Inhibitor)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตรายถึงชีวิต! การใช้ยาขยายหลอดเลือดหัวใจกลุ่ม Nitrate ร่วมกับยา Sildenafil/Tadalafil จะเสริมฤทธิ์ขยายหลอดเลือดอย่างรุนแรง ทำให้ความดันโลหิตตกต่ำเฉียบพลัน ช็อก และหัวใจขาดเลือดได้',
+      return groupTerms.some((term) => {
+        const kw = term.toLowerCase().trim();
+        return kw.length > 0 && searchableFields.some((field) => field.includes(kw));
       });
-      return;
+    };
+
+    // 1. วนเช็กกฎทั้งหมดจากตาราง DrugInteractionRule ใน Supabase (DANGER -> WARNING)
+    for (const rule of rules) {
+      const forwardMatch =
+        matchesGroup(med1, rule.drugAGroup, rule.excludeA) &&
+        matchesGroup(med2, rule.drugBGroup, rule.excludeB);
+
+      const reverseMatch =
+        matchesGroup(med2, rule.drugAGroup, rule.excludeA) &&
+        matchesGroup(med1, rule.drugBGroup, rule.excludeB);
+
+      if (forwardMatch || reverseMatch) {
+        res.json({
+          status: rule.severity.toLowerCase() === 'danger' ? 'danger' : 'warning',
+          ruleName: rule.ruleName,
+          message: rule.message,
+        });
+        return;
+      }
     }
 
-    if (isAnticoagulant(med1) && isAnticoagulant(med2)) {
-      res.json({
-        status: 'danger',
-        message: `อันตรายรุนแรง! ห้ามใช้ยาต้านการแข็งตัวของเลือด (Anticoagulant) 2 ชนิด (${med1.name} และ ${med2.name}) ร่วมกัน เพราะจะยับยั้งปัจจัยการแข็งตัวของเลือดซ้ำซ้อน ทำให้เกิดภาวะเลือดออกรุนแรงในสมองและอวัยวะภายในถึงชีวิต`,
-      });
-      return;
-    }
-
-    if (matchPair(isNSAID, isBloodThinner)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาแก้ปวดกลุ่ม NSAID ทำลายเยื่อบุกระเพาะอาหารและยับยั้งการทำงานของเกล็ดเลือด เมื่อใช้ร่วมกับยาละลายลิ่มเลือดหรือยาต้านเกล็ดเลือด จะเพิ่มความเสี่ยงภาวะเลือดออกในทางเดินอาหารขั้นรุนแรง',
-      });
-      return;
-    }
-
-    if (isNSAID(med1) && isNSAID(med2)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ห้ามใช้ยาแก้ปวดต้านการอักเสบกลุ่ม NSAID 2 ชนิดร่วมกัน เพราะไม่ช่วยเพิ่มประสิทธิภาพการลดปวด แต่เพิ่มความเสี่ยงแผลทะลุ เลือดออกในกระเพาะอาหาร และไตวายเฉียบพลัน',
-      });
-      return;
-    }
-
-    if (matchPair(isSSRIorSNRI, isSerotonergic)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! การใช้ยาต้านเศร้ากลุ่ม SSRI/SNRI ร่วมกับ Tramadol หรือ Dextromethorphan ทำให้ระดับสารสื่อประสาท Serotonin สูงเกินไป เกิดภาวะ Serotonin Syndrome (ไข้สูง, กล้ามเนื้อกระตุก, หัวใจเต้นเร็ว, สับสน) ซึ่งเป็นอันตรายถึงชีวิต',
-      });
-      return;
-    }
-
-    if (matchPair(isStatin, isStrongCYP3A4Inhibitor)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาฆ่าเชื้อรา Azole หรือยาฆ่าเชื้อ Clarithromycin/Erythromycin ยับยั้งเอนไซม์ CYP3A4 ทำให้ระดับยาลดไขมัน Statin ในเลือดพุ่งสูงจนเกิดภาวะกล้ามเนื้อลายสลายตัว (Rhabdomyolysis) และไตวายเฉียบพลัน',
-      });
-      return;
-    }
-
-    if (matchPair(isWarfarin, isWarfarinBooster)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาฆ่าเชื้อ/ฆ่าเชื้อรากลุ่มนี้ยับยั้งการทำลายยา Warfarin ที่ตับอย่างรุนแรง ทำให้ค่าการแข็งตัวของเลือด (INR) พุ่งสูงและเสี่ยงเลือดออกรุนแรง ต้องปรึกษาแพทย์ทันที',
-      });
-      return;
-    }
-
-    if (matchPair(isAceArb, isPotassiumSparingOrSupplement)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! การใช้ยาลดความดันกลุ่ม ACEi/ARB ร่วมกับ Spironolactone หรือโพแทสเซียมเสริม ทำให้ไตขับโพแทสเซียมลดลง เกิดภาวะโพแทสเซียมในเลือดสูงเกิน (Hyperkalemia) เสี่ยงหัวใจเต้นผิดจังหวะและหยุดเต้น',
-      });
-      return;
-    }
-
-    if (matchPair(isDigoxin, isPotassiumDepletingDiuretic)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาขับปัสสาวะกลุ่มนี้ทำให้โพแทสเซียมในเลือดต่ำ (Hypokalemia) ซึ่งจะกระตุ้นให้ยา Digoxin จับกับกล้ามเนื้อหัวใจมากขึ้นจนเกิดพิษและภาวะหัวใจเต้นผิดจังหวะรุนแรง',
-      });
-      return;
-    }
-
-    if (matchPair(isMethotrexate, (m) => isNSAID(m) || matchName(m, 'Co-trimoxazole', 'Sulfamethoxazole'))) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาอีกชนิดจะลดการขับออกของ Methotrexate ทางไต ทำให้ระดับยาคั่งในเลือดและเกิดพิษกดไขกระดูกอย่างรุนแรง (เม็ดเลือดขาวต่ำ เกล็ดเลือดต่ำ)',
-      });
-      return;
-    }
-
-    if (matchPair(isLithium, (m) => isNSAID(m) || isPotassiumDepletingDiuretic(m) || isAceArb(m))) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! การใช้ร่วมกันจะลดการขับออกของยา Lithium ทางไต ทำให้ระดับยาในเลือดสูงจนเกิดพิษต่อระบบประสาท (มือสั่นรุนแรง ชัก ซึม) และไตวาย',
-      });
-      return;
-    }
-
-    if (isQTProlonging(med1) && isQTProlonging(med2)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! ยาทั้งสองชนิดมีผลยืดช่วงคลื่นไฟฟ้าหัวใจ (QT Prolongation) เมื่อใช้ร่วมกันจะเสริมฤทธิ์เพิ่มความเสี่ยงภาวะหัวใจเต้นผิดจังหวะรุนแรงชนิด Torsades de Pointes',
-      });
-      return;
-    }
-
-    if (matchPair(isOpioid, isBenzo)) {
-      res.json({
-        status: 'danger',
-        message:
-          'อันตราย! การใช้ยาแก้ปวดกลุ่ม Opioid ร่วมกับยานอนหลับ/คลายกังวลกลุ่ม Benzodiazepine จะเสริมฤทธิ์กดศูนย์ควบคุมการหายใจในสมองอย่างรุนแรง อาจหมดสติและเสียชีวิตได้',
-      });
-      return;
-    }
-
-    // =========================================================================
-    // ระดับที่ 2: WARNING (ควรเฝ้าระวัง / ต้องปรับขนาดหรือปรึกษาแพทย์อย่างใกล้ชิด)
-    // =========================================================================
-
-    if (matchPair(isAnticoagulant, isAntiplatelet)) {
-      res.json({
-        status: 'warning',
-        message: `เฝ้าระวังความเสี่ยงเลือดออกสูง! การใช้ยาต้านการแข็งตัวของเลือด (${isAnticoagulant(med1) ? med1.name : med2.name}) ร่วมกับยาต้านเกล็ดเลือด (${isAntiplatelet(med1) ? med1.name : med2.name}) ออกฤทธิ์ยับยั้งกลไกการหยุดเลือด 2 ระบบพร้อมกัน เพิ่มความเสี่ยงเลือดออกในทางเดินอาหารและฟกช้ำง่าย (ใช้ร่วมกันได้เฉพาะกรณีแพทย์สั่งหลังทำหัตถการหัวใจหรือใส่ขดลวด และต้องเฝ้าระวังอาการถ่ายดำหรือเลือดออกผิดปกติอย่างใกล้ชิด)`,
-      });
-      return;
-    }
-
-    if (isAntiplatelet(med1) && isAntiplatelet(med2)) {
-      res.json({
-        status: 'warning',
-        message: `เฝ้าระวัง! การใช้ยาต้านเกล็ดเลือด 2 ชนิด (${med1.name} และ ${med2.name}) ร่วมกัน (Dual Antiplatelet Therapy) เพิ่มความเสี่ยงเลือดออกในกระเพาะอาหารและเลือดหยุดยาก ควรใช้เฉพาะภายใต้การดูแลของแพทย์โรคหัวใจหรือระบบประสาทเท่านั้น`,
-      });
-      return;
-    }
-
-    if (matchPair(isCorticosteroid, isNSAID)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง! การใช้ยาสเตียรอยด์ (เช่น Prednisolone/Dexamethasone) ร่วมกับยาแก้ปวดกลุ่ม NSAID จะทำลายเกราะป้องกันเยื่อบุกระเพาะอาหารพร้อมกัน เพิ่มความเสี่ยงแผลในกระเพาะอาหารและเลือดออกในทางเดินอาหารสูงขึ้นหลายเท่า',
-      });
-      return;
-    }
-
-    if (matchPair(isParacetamol, isEnzymeInducer)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยากันชักหรือยาวัณโรคกลุ่มนี้กระตุ้นเอนไซม์ตับให้เปลี่ยน Paracetamol เป็นสารพิษ (NAPQI) มากขึ้น เพิ่มความเสี่ยงตับอักเสบ ควรจำกัดขนาดยาและปรึกษาแพทย์',
-      });
-      return;
-    }
-
-    if (matchPair(isOralContraceptive, isEnzymeInducer)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยา Carbamazepine, Phenytoin หรือ Rifampicin เร่งการทำลายฮอร์โมนยาคุมกำเนิด ทำให้ประสิทธิภาพการคุมกำเนิดลดลงและเสี่ยงตั้งครรภ์ไม่พึงประสงค์',
-      });
-      return;
-    }
-
-    if (matchPair(isChelatedAntibiotic, isDivalentCationOrAntacid)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: แร่ธาตุ (แคลเซียม ธาตุเหล็ก แมกนีเซียม สังกะสี) และยาลดกรดจะจับตัวกับยาฆ่าเชื้อเป็นสารประกอบที่ไม่ละลายน้ำ ทำให้ยาดูดซึมไม่ได้ผล ควรทานห่างกันอย่างน้อย 2-4 ชั่วโมง',
-      });
-      return;
-    }
-
-    if (matchPair(isPPI, isClopidogrel)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาลดกรดกลุ่ม PPI (โดยเฉพาะ Omeprazole/Esomeprazole) ยับยั้งเอนไซม์ CYP2C19 ที่เปลี่ยนยา Clopidogrel ให้อยู่ในรูปออกฤทธิ์ ทำให้ประสิทธิภาพในการป้องกันลิ่มเลือดลดลง',
-      });
-      return;
-    }
-
-    if (matchPair(isSSRIorSNRI, isNSAID)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาต้านเศร้ากลุ่ม SSRI/SNRI ลดการเก็บกลับ Serotonin ในเกล็ดเลือด ทำให้เกล็ดเลือดเกาะตัวช้าลง เมื่อทานร่วมกับยาแก้ปวด NSAID จะเพิ่มความเสี่ยงเลือดออกในกระเพาะอาหารมากขึ้น',
-      });
-      return;
-    }
-
-    if (matchPair(isNSAID, (m) => isAceArb(m) || isPotassiumDepletingDiuretic(m) || isBetaBlocker(m))) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาแก้ปวดกลุ่ม NSAID ยับยั้ง Prostaglandin ทำให้หลอดเลือดไตหดตัวและเกิดการคั่งของน้ำและเกลือ ส่งผลให้ประสิทธิภาพของยาลดความดันโลหิตและยาขับปัสสาวะลดลง',
-      });
-      return;
-    }
-
-    if (matchPair(isBetaBlocker, isAntidiabetic)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: ยาลดความดันกลุ่ม Beta-blocker สามารถบดบังอาการเตือนของภาวะน้ำตาลในเลือดต่ำ (เช่น ใจสั่น มือสั่น) และทำให้ระดับน้ำตาลฟื้นตัวช้า',
-      });
-      return;
-    }
-
-    if (isCNSDepressant(med1) && isCNSDepressant(med2)) {
-      res.json({
-        status: 'warning',
-        message:
-          'เฝ้าระวัง: การใช้ยากดประสาทส่วนกลาง ยาคลายกังวล หรือยาแก้แพ้ที่ทำให้ง่วงร่วมกัน จะเสริมฤทธิ์ทำให้ง่วงซึม มึนงง สมาธิลดลง และเสี่ยงต่อการพลัดตกหกล้ม',
-      });
-      return;
-    }
-
+    // 2. เช็กหมวดหมู่ซ้ำซ้อนที่ควรระวังการเสริมฤทธิ์
     if (
       med1.category &&
       med2.category &&
@@ -761,7 +392,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
       return;
     }
 
-    // ตรวจสอบข้อมูลปฏิกิริยาที่บันทึกไว้ในฟิลด์ interactions ของยาทั้ง 100 รายการในฐานข้อมูล พร้อมดึงข้อความจริงมาแสดง
+    // 3. เช็กข้อมูลปฏิกิริยารายตัวที่บันทึกไว้ในคอลัมน์ interactions ของตาราง Medication
     const findDatabaseInteractionDetails = (sourceMed: MedRecord, targetMed: MedRecord): string[] => {
       if (!Array.isArray(sourceMed.interactions) || sourceMed.interactions.length === 0) {
         return [];
@@ -788,10 +419,7 @@ app.post('/api/interactions/check', async (req: Request, res: Response, next: Ne
       return;
     }
 
-    // =========================================================================
-    // ระดับที่ 3: SAFE (ไม่พบปฏิกิริยาที่มีนัยสำคัญทางคลินิก)
-    // =========================================================================
-
+    // 4. ไม่พบปฏิกิริยาระหว่างยา
     res.json({
       status: 'safe',
       message: `ปลอดภัย: ไม่พบปฏิกิริยารุนแรงระหว่าง ${med1.name} และ ${med2.name} ในระบบเบื้องต้น (ควรรับประทานตามขนาดและวิธีใช้ที่ระบุบนฉลากยา)`,
