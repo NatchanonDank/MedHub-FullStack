@@ -5,7 +5,6 @@ import { InteractionCheckerPage } from './pages/InteractionCheckerPage';
 import { MyKitPage } from './pages/MyKitPage';
 import { SymptomReportPage } from './pages/SymptomReportPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
-import { AboutPage } from './pages/AboutPage';
 import { AuthModal } from './components/AuthModal';
 import { useMedStore } from './stores/useMedStore';
 import { useMyKit } from './hooks/useMedications';
@@ -62,9 +61,6 @@ function RootLayout() {
             </NavLink>
             <NavLink to="/reports" className={navLinkClass}>
               รายงานอาการ
-            </NavLink>
-            <NavLink to="/about" className={navLinkClass}>
-              เกี่ยวกับระบบ
             </NavLink>
 
             {/* เมนูพิเศษที่ปรากฏเฉพาะบัญชี ADMIN เท่านั้น */}
@@ -142,9 +138,6 @@ function RootLayout() {
                 <li>
                   <NavLink to="/reports">รายงานอาการ</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/about">เกี่ยวกับระบบ</NavLink>
-                </li>
                 {isAdmin && (
                   <li className="pt-2 border-t border-base-200">
                     <NavLink
@@ -192,7 +185,6 @@ export const router = createBrowserRouter([
       { path: 'my-kit', element: <MyKitPage /> },
       { path: 'reports', element: <SymptomReportPage /> },
       { path: 'admin', element: <AdminDashboardPage /> },
-      { path: 'about', element: <AboutPage /> },
     ],
   },
 ]);
