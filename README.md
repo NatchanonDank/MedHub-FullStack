@@ -1,6 +1,6 @@
 # MedHub — Full-Stack Medication Database & Community Pharmacovigilance
 
-เว็บแอปพลิเคชันฐานข้อมูลยา ระบบตรวจสอบปฏิกิริยาระหว่างยา (Drug Interaction Checker) กระเป๋ายาส่วนตัว (My Kit) และระบบรายงานอาการไม่พึงประสงค์จากการใช้ยาในชุมชน (Community Pharmacovigilance) พัฒนาด้วยสถาปัตยกรรม Full-Stack
+เว็บแอปพลิเคชันฐานข้อมูลยา ระบบตรวจสอบปฏิกิริยาระหว่างยา (Drug Interaction Checker) กระเป๋ายาส่วนตัว (My Kit) และระบบรายงานอาการไม่พึงประสงค์จากการใช้ยาในชุมชน (Community Pharmacovigilance) พัฒนาด้วยสถาปัตยกรรม Full-Stack แบบ Decoupled SPA
 
 ---
 
@@ -8,17 +8,18 @@
 - **Frontend (`client/`):** React 19, TypeScript, Vite, React Router v7, TanStack Query, Zustand, Tailwind CSS, DaisyUI
 - **Backend (`server/`):** Node.js, Express, TypeScript, Prisma ORM v7
 - **Database:** PostgreSQL (Supabase)
+- **Deployment:** Vercel (Frontend & Backend API)
 
 ---
 
 ## ✨ ฟีเจอร์หลัก (Core Features)
-1. **ฐานข้อมูลยา (Medication Database):** ค้นหาชื่อยา ชื่อสามัญ กรองตามหมวดหมู่ และดูรายละเอียดสรรพคุณ วิธีใช้ คำเตือน และผลข้างเคียง (ครบ 49 รายการ)
-2. **ตรวจสอบปฏิกิริยาระหว่างยา (Drug Interaction Checker):** ตรวจสอบความเสี่ยงเมื่อใช้ยาร่วมกัน พร้อมระดับการแจ้งเตือน (ปลอดภัย / เฝ้าระวัง / อันตราย)
+1. **ฐานข้อมูลยา (Medication Database):** ค้นหาชื่อยา ชื่อสามัญ กรองตามหมวดหมู่ และดูรายละเอียดสรรพคุณ วิธีใช้ คำเตือน และผลข้างเคียง
+2. **ตรวจสอบปฏิกิริยาระหว่างยา (Drug Interaction Checker):** ตรวจสอบความเสี่ยงเมื่อใช้ยาร่วมกันผ่านกฎในฐานข้อมูลและ `interactionService` พร้อมระดับการแจ้งเตือน (ปลอดภัย / เฝ้าระวัง / อันตราย)
 3. **กระเป๋ายาส่วนตัว (My Kit):** บันทึกรายการยาประจำตัวและจัดการโน้ตส่วนตัวสำหรับผู้ใช้งานที่เข้าสู่ระบบ
 4. **รายงานอาการไม่พึงประสงค์ (Community Symptom Reporting):** ผู้ใช้ทั่วไปสามารถรายงานอาการข้างเคียงที่พบจากการใช้ยา แก้ไข และลบรายงานของตนเองได้
 5. **ระบบจัดการสำหรับผู้ดูแลระบบ / เภสัชกร (Admin Console):**
-   - จัดการข้อมูลยาในระบบแบบ Full CRUD (เพิ่ม / แก้ไข / ลบรายการยา)
-   - ตรวจสอบรายงานอาการไม่พึงประสงค์ของชุมชน อัปเดตสถานะ (`PENDING`, `REVIEWED`, `RESOLVED`) และเพิ่มคำแนะนำจากเภสัชกร
+  - จัดการข้อมูลยาในระบบแบบ Full CRUD (เพิ่ม / แก้ไข / ลบรายการยา)
+  - ตรวจสอบรายงานอาการไม่พึงประสงค์ของชุมชน อัปเดตสถานะ (`PENDING`, `REVIEWED`, `RESOLVED`) และเพิ่มคำแนะนำจากเภสัชกร
 
 ---
 
@@ -34,8 +35,11 @@ MedHub-FullStack/
 │       ├── pages/          # MedList, MedDetail, InteractionChecker, MyKit, SymptomReport, AdminDashboard, About
 │       └── stores/         # Zustand Global State & Auth Persistence
 ├── server/                 # Backend RESTful API (Express + Prisma)
-│   ├── prisma/             # schema.prisma, migrations, seed.ts & data/medications.json
-│   └── src/                # server.ts & Prisma Client Adapter
+│   ├── prisma/             # schema.prisma, migrations, seed.ts & data/ (medications.json, interaction_rules.json)
+│   └── src/
+│       ├── lib/            # Prisma Client Adapter
+│       ├── services/       # interactionService.ts
+│       └── server.ts       # Express App & API Routes
 └── README.md
 ```
 
@@ -55,8 +59,9 @@ PORT=4000
 ```
 รันคำสั่งสร้าง Prisma Client, Migrate และ Seed ข้อมูลเริ่มต้นลงฐานข้อมูล จากนั้นเปิดเซิร์ฟเวอร์:
 ```bash
-npm run prisma:generate
-npm run prisma:seed
+npx prisma generate
+npx prisma migrate deploy
+npx prisma db seed
 npm run dev
 ```
 > Backend API จะทำงานที่ `http://localhost:4000`
