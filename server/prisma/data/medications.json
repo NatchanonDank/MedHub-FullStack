@@ -1006,7 +1006,7 @@
       "Alcohol"
     ],
     "pregnancyCategory": "C",
-    "imageUrl": "/images/insulin_glargine.png",
+    "imageUrl": "/images/insulinglargine.png",
     "createdAt": "2026-11-24 16:50:16.996"
   },
   {
@@ -1861,7 +1861,7 @@
       "Vancomycin"
     ],
     "pregnancyCategory": "B",
-    "imageUrl": "/images/piperacillin_tazobactam.png",
+    "imageUrl": "/images/piperacillin.png",
     "createdAt": "2026-11-24 19:59:49.011"
   },
   {
@@ -2303,7 +2303,7 @@
       "Losartan"
     ],
     "pregnancyCategory": "C (D ในไตรมาสที่ 3)",
-    "imageUrl": "/images/mefenamic_acid.png",
+    "imageUrl": "/images/mefenamicacid.png",
     "createdAt": "2026-11-24 19:59:49.458"
   },
   {
@@ -2340,7 +2340,7 @@
       "Ferrous Fumarate"
     ],
     "pregnancyCategory": "C (ปลอดภัยเมื่อใช้ในขนาดเสริมปกติ)",
-    "imageUrl": "/images/calcium_carbonate.png",
+    "imageUrl": "/images/calciumcarbonate.png",
     "createdAt": "2026-11-24 19:59:49.495"
   },
   {
@@ -2378,7 +2378,7 @@
       "Antacids (Al/Mg)"
     ],
     "pregnancyCategory": "A",
-    "imageUrl": "/images/ferrous_fumarate.png",
+    "imageUrl": "/images/ferrousfumarate.png",
     "createdAt": "2026-11-24 19:59:49.532"
   },
   {
