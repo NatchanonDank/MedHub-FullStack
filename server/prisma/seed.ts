@@ -115,6 +115,18 @@ async function main() {
     const rawData = JSON.parse(fs.readFileSync(rulesJsonPath, 'utf-8'));
     const rulesList = Array.isArray(rawData) ? rawData : rawData.rules || rawData.data || [];
 
+    // เก็บรายชื่อ ruleName ทั้งหมดที่มีอยู่ในไฟล์ JSON ล่าสุด
+    const activeRuleNames = rulesList
+      .map((item: any) => String(item.ruleName || item.rule_name || item.name || '').trim())
+      .filter(Boolean);
+
+    // ลบกฎเก่าใน DB ที่ไม่อยู่ในรายการล่าสุดออก (เช่น กฎที่ถูกเปลี่ยนชื่อ)
+    await prisma.drugInteractionRule.deleteMany({
+      where: {
+        ruleName: { notIn: activeRuleNames },
+      },
+    });
+
     let seededRuleCount = 0;
     for (const item of rulesList) {
       const ruleName = item.ruleName || item.rule_name || item.name;
