@@ -72,13 +72,13 @@
     "message": "อันตราย! ยาฆ่าเชื้อรา Azole หรือยาฆ่าเชื้อกลุ่ม Macrolide ยับยั้งการขับออกของยาแก้ปวดเกาต์ Colchicine ทำให้ระดับยาในเลือดพุ่งสูงจนเกิดพิษรุนแรง (ท้องเสียรุนแรง กดไขกระดูก กล้ามเนื้อสลาย และไตวาย)"
   },
   {
-    "ruleName": "Warfarin + Antimicrobial/Amiodarone Booster",
+    "ruleName": "Warfarin + Strong CYP Inhibitor Antimicrobials",
     "drugAGroup": ["Warfarin"],
-    "drugBGroup": ["Fluconazole", "Metronidazole", "Tinidazole", "Ornidazole", "Sulfamethoxazole", "Trimethoprim", "Co-trimoxazole", "Ciprofloxacin", "Levofloxacin", "Ofloxacin", "Moxifloxacin", "Norfloxacin", "Clarithromycin", "Amiodarone"],
+    "drugBGroup": ["Fluconazole", "Metronidazole", "Tinidazole", "Ornidazole", "Sulfamethoxazole", "Trimethoprim", "Co-trimoxazole", "Ciprofloxacin", "Levofloxacin", "Ofloxacin", "Moxifloxacin", "Norfloxacin", "Clarithromycin"],
     "excludeA": [],
     "excludeB": [],
     "severity": "DANGER",
-    "message": "อันตราย! ยาฆ่าเชื้อ/ฆ่าเชื้อรากลุ่มนี้หรือ Amiodarone ยับยั้งเอนไซม์ตับที่ทำลายยา Warfarin อย่างรุนแรง ทำให้ค่าการแข็งตัวของเลือด (INR) พุ่งสูงและเสี่ยงเลือดออกรุนแรงในสมองและทางเดินอาหาร ต้องปรึกษาแพทย์เพื่อปรับขนาดยาและเจาะเลือดติดตามใกล้ชิด"
+    "message": "อันตราย! ยาฆ่าเชื้อ/ฆ่าเชื้อรากลุ่มนี้ยับยั้งเอนไซม์ตับที่ทำลายยา Warfarin อย่างรุนแรง ทำให้ค่าการแข็งตัวของเลือด (INR) พุ่งสูงและเสี่ยงเลือดออกรุนแรงในสมองและทางเดินอาหาร ต้องปรึกษาแพทย์เพื่อปรับขนาดยาและเจาะเลือดติดตามใกล้ชิด"
   },
   {
     "ruleName": "ACEi/ARB + Potassium Sparing/Supplement",
@@ -142,6 +142,15 @@
     "excludeB": [],
     "severity": "DANGER",
     "message": "อันตราย! การใช้ยาแก้ปวดกลุ่ม Opioid ร่วมกับยานอนหลับ/คลายกังวลกลุ่ม Benzodiazepine จะเสริมฤทธิ์กดศูนย์ควบคุมการหายใจในสมองอย่างรุนแรง อาจหมดสติและเสียชีวิตได้"
+  },
+  {
+  "ruleName": "Warfarin + Amiodarone",
+  "drugAGroup": ["Warfarin"],
+  "drugBGroup": ["Amiodarone"],
+  "excludeA": [],
+  "excludeB": [],
+  "severity": "DANGER",
+  "message": "อันตราย! Amiodarone (ยาต้านหัวใจเต้นผิดจังหวะ) ยับยั้งการทำลายยา Warfarin อย่างรุนแรง ทำให้ค่า INR พุ่งสูงและเสี่ยงเลือดออกรุนแรง โดยผลอาจเกิดช้าหลังเริ่มยา 1–2 สัปดาห์และค้างอยู่ได้นานแม้หยุดยาแล้ว แพทย์มักต้องปรับลดขนาด Warfarin และเจาะเลือดติดตามค่า INR ใกล้ชิด"
   },
   {
     "ruleName": "Anticoagulant + Antiplatelet",
