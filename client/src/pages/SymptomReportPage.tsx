@@ -199,7 +199,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold">เลือกตัวยาที่รับประทาน *</span>
+                  <span className="label-text font-semibold font-bold text-primary">เลือกตัวยาที่รับประทาน *</span>
                 </label>
                 <select
                   className="select select-bordered w-full"
@@ -218,7 +218,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold">ระดับความรุนแรงของอาการ *</span>
+                  <span className="label-text font-semibold font-bold text-primary">ระดับความรุนแรงของอาการ *</span>
                 </label>
                 <select
                   className="select select-bordered w-full"
@@ -234,7 +234,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold">อาการผิดปกติที่พบ *</span>
+                <span className="label-text font-semibold font-bold text-primary">อาการผิดปกติที่พบ *</span>
               </label>
               <input
                 type="text"
@@ -248,7 +248,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold">รายละเอียดเพิ่มเติม (ช่วงเวลาที่ทาน / อาหารที่ทานร่วมด้วย)</span>
+                <span className="label-text font-semibold font-bold text-primary">รายละเอียดเพิ่มเติม (ช่วงเวลาที่ทาน / อาหารที่ทานร่วมด้วย)</span>
               </label>
               <textarea
                 rows={3}
@@ -309,19 +309,19 @@ const getSeverityBadge = (level: SeverityLevel) => {
               <div className="card-body p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <div className="flex flex-wrap items-center text-center gap-2 mb-1">
                       <span className="font-bold text-lg text-primary">{report.medication.name}</span>
                       <span className="text-xs opacity-60">({report.medication.genericName})</span>
                       {getSeverityBadge(report.severity)}
                       {getStatusBadge(report.status)}
                     </div>
-                    <p className="font-semibold text-base text-base-content mt-1">
+                    <p className="p-0.5 font-semibold text-base-content mt-1 text-left">
                       อาการที่พบ: {report.symptom}
                     </p>
                     {report.description && (
-                      <p className="text-sm text-base-content/75 mt-1">{report.description}</p>
+                      <p className="p-0.5 text-sm text-base-content/75 mt-1 text-left ">{report.description}</p>
                     )}
-                    <p className="text-xs text-base-content/50 mt-2">
+                    <p className="p-0.5 text-xs text-base-content/50 mt-2 text-left">
                       วันที่แจ้ง: {new Date(report.createdAt).toLocaleString('th-TH')}
                     </p>
                   </div>
@@ -346,7 +346,7 @@ const getSeverityBadge = (level: SeverityLevel) => {
 
                 {/* Admin / Pharmacist Feedback Box */}
                 {report.adminNote && (
-                  <div className="mt-3 p-3.5 rounded-xl bg-success/10 border border-success/30 text-sm">
+                  <div className="mt-3 p-3.5 rounded-xl bg-success/10 border border-success/30 text-sm text-left">
                     <div className="font-bold text-success flex items-center gap-1.5 mb-1">
                       <span>คำแนะนำจากเภสัชกร :</span>
                     </div>

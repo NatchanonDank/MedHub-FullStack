@@ -59,7 +59,7 @@ export const InteractionCheckerPage: React.FC = () => {
       <div className="card bg-base-100 shadow-xl border border-base-200 p-6 sm:p-8 max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row gap-6 items-center">
           <div className="form-control w-full">
-            <label className="label"><span className="label-text font-semibold">ยาชนิดที่ 1</span></label>
+            <label className="label"><span className="label-text font-semibold text-primary">ยาชนิดที่ 1</span></label>
             <select className="select select-bordered w-full" value={med1Id} onChange={(e) => setMed1Id(e.target.value)}>
               <option value="" disabled>เลือกยาชนิดที่ 1</option>
               {medications.map((med) => (
@@ -71,7 +71,7 @@ export const InteractionCheckerPage: React.FC = () => {
           <div className="text-2xl font-bold text-base-content/30 pt-6">+</div>
 
           <div className="form-control w-full">
-            <label className="label"><span className="label-text font-semibold">ยาชนิดที่ 2</span></label>
+            <label className="label"><span className="label-text font-semibold text-primary">ยาชนิดที่ 2</span></label>
             <select className="select select-bordered w-full" value={med2Id} onChange={(e) => setMed2Id(e.target.value)}>
               <option value="" disabled>เลือกยาชนิดที่ 2</option>
               {medications.map((med) => (

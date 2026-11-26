@@ -153,14 +153,14 @@ export const MedDetailPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h4 className="font-bold text-primary">ขนาดและวิธีใช้</h4>
-                  <p className="text-base-content/90 text-sm sm:text-base mt-1">{medication.dosageInstruction}</p>
+                  <h4 className="grid grid-cols-1 md:grid-cols-3 gap-16 font-bold text-primary ">ขนาดและวิธีใช้</h4>
+                  <p className="text-base-content/90 text-sm sm:text-base mt-1 text-left">{medication.dosageInstruction}</p>
                 </div>
               </div>
             )}
 
             {/* ข้อบ่งใช้ และ ผลข้างเคียง */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">        
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">        
               <div className="bg-info/5 border border-info/20 p-5 rounded-xl flex flex-col">
                 <h3 className="font-bold text-lg text-info flex items-center gap-2 mb-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

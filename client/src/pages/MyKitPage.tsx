@@ -60,7 +60,7 @@ export const MyKitPage = () => {
             <h1 className="text-2xl sm:text-4xl font-bold text-primary truncate">
               กระเป๋ายาของ {user.name}
             </h1>
-            <p className="text-sm sm:text-base text-base-content/70 mt-1">
+            <p className="text-sm sm:text-base text-base-content/70 text-left mt-1">
               รายการยาที่บันทึกไว้ในฐานข้อมูล ({kitItems.length} รายการ)
             </p>
           </div>

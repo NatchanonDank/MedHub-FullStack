@@ -33,12 +33,6 @@ export const AuthModal: React.FC = () => {
     setError('');
   };
 
-  const fillAdminAccount = () => {
-    setMode('login');
-    setEmail('admin@medhub.com');
-    setPassword('admin1234');
-    setError('');
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,11 +78,11 @@ export const AuthModal: React.FC = () => {
           </p>
         </div>
 
-        <div role="tablist" className="tabs tabs-boxed mb-5">
+        <div role="tablist" className="tabs tabs-boxed mb-5 font-bold">
           <button
             type="button"
             role="tab"
-            className={`tab font-semibold ${mode === 'login' ? 'tab-active' : ''}`}
+            className={`tab font-semibold transition-colors${mode === 'login' ? 'tab-active text-white' : 'text-slate-400 hover:text-white'}`}
             onClick={() => handleSwitchMode('login')}
           >
             เข้าสู่ระบบ
@@ -96,7 +90,7 @@ export const AuthModal: React.FC = () => {
           <button
             type="button"
             role="tab"
-            className={`tab font-semibold ${mode === 'register' ? 'tab-active' : ''}`}
+            className={`tab font-semibold transition-colors ${mode === 'register' ? 'tab-active text-white' : 'text-slate-400 hover:text-white'}`}
             onClick={() => handleSwitchMode('register')}
           >
             สมัครสมาชิก
@@ -174,13 +168,7 @@ export const AuthModal: React.FC = () => {
             >
               ใช้บัญชีผู้ใช้ทั่วไป (test@test.com / 1234)
             </button>
-            <button
-              type="button"
-              onClick={fillAdminAccount}
-              className="btn btn-ghost btn-xs text-warning"
-            >
-              ใช้บัญชีผู้ดูแลระบบ (admin@medhub.com / admin1234)
-            </button>
+            
           </div>
         )}
       </div>

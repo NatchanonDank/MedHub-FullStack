@@ -49,7 +49,7 @@ function RootLayout() {
               ข้อมูลยา
             </NavLink>
             <NavLink to="/interactions" className={navLinkClass}>
-              เช็กยาตีกัน
+              เช็กยา
             </NavLink>
             <NavLink to="/my-kit" className={({ isActive }) => `${navLinkClass({ isActive })} inline-flex items-center gap-2`}>
               <span>กระเป๋ายา</span>
@@ -128,7 +128,7 @@ function RootLayout() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/interactions">เช็กยาตีกัน</NavLink>
+                  <NavLink to="/interactions">เช็กยา</NavLink>
                 </li>
                 <li>
                   <NavLink to="/my-kit">
@@ -163,7 +163,7 @@ function RootLayout() {
       <footer className="bg-base-100 border-t border-base-300 py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-base-content/60">
           <p>© 2026 MedHub — Full-Stack Medication Database & Community Pharmacovigilance</p>
-          <p>ข้อมูลยาเพื่อการศึกษาอ้างอิงจาก @pharmacology.studies</p>
+          <p>ข้อมูลยาเพื่อการศึกษาอ้างอิงจาก @apollohospitals</p>
         </div>
       </footer>
 
